@@ -11,7 +11,14 @@ export const enSidebar = sidebar({
           text: "Concepts",
           icon: "solar:book-outline",
           prefix: "concepts/",
-          children: "structure"
+          children: [
+            {
+              text: "Golang",
+              icon: "fa6-brands:golang",
+              prefix: "golang/",
+              children: "structure",
+            }
+          ]
         }, 
         {
           text: "Golang",
