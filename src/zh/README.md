@@ -12,4 +12,4 @@ actions:
 
 
 copyright: false
-footer: Apache2.0 协议, 版权所有 © 2024-present Ryan SU
+footer: Apache2.0 协议, 版权所有 © 2024-present Go Guide
