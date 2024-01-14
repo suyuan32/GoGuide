@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://go-guide.ryansu.tech/sitemap.xml
+Sitemap: https://goguide.ryansu.tech/sitemap.xml
