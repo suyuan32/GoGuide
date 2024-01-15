@@ -18,6 +18,8 @@ export default hopeTheme({
 
   docsDir: "src",
 
+  breadcrumb: false,
+
   locales: {
     "/": {
       // navbar
