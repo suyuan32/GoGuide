@@ -5,6 +5,6 @@ export const enNavbar = navbar([
   {
     text: "Guide",
     icon: "icon-park-outline:mountain",
-    link: "/guide"
+    link: "/en/guide"
   },
 ]);
