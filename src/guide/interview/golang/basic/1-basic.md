@@ -121,7 +121,9 @@ func (p *animal) Say() {
 
 #### 字面量是什么意思？
 <details> <summary>展开查看</summary>
+
 - 而下面这些基本类型值的文本，就是基本类型字面量。
+
 | 基本类型 | 集合                                                                                     |
 | -------- | ---------------------------------------------------------------------------------------- |
 | 布尔类型 | `bool`                                                                                   |
@@ -129,7 +131,6 @@ func (p *animal) Say() {
 | 复数类型 | `complex64` `complex128`                                                                 |
 | 浮点类型 | `float32` `float64`                                                                      |
 | 整数类型 | `int8` `uint8` `int16` `uint16` `int32` `uint32` `int64` `uint64` `int` `uint` `uintptr` |
-
 
 
 - 未命名常量是一种特殊的常量，它没有具体的名称。这种常量只有值，没有与之关联的变量名。
@@ -143,6 +144,7 @@ func (p *animal) Say() {
 <details> <summary>展开查看</summary>
 
 - 一个值可存在多种字面量表示，如下十进制的数值 21，可由三种字面量表示
+
 | 10进制 | 8进制 | 2进制       | 16进制 |
 | ------ | ----- | ----------- | ------ |
 | 21     | 0o25  | 0b0001 0101 | 0x15   |
@@ -201,7 +203,7 @@ func main() {
 - 使用组合字面量会简单一些，而结构体、数组、切片和map的组合字面量方式如下。
 
 - 结构体用组合字面量方式来定义和初始化
-```golang
+```go
 type man struct {
 	nationality string
 	height int
@@ -217,7 +219,7 @@ func main() {
 
 - 结构体用繁琐的常规方式如下
   
-```golang
+```go
 type man struct {
 	nationality string
 	height int
@@ -234,7 +236,7 @@ func main() {
 
 - map用组合字面量方式的定义和初始化如下
 
-```golang
+```go
 m := map[string]int {
 	"math": 96,
 	"Chinese": 90,
@@ -242,12 +244,12 @@ m := map[string]int {
 ```
 
 - 同样的，数组用组合字面量方式的定义和初始化可以如下
-```golang
+```go
 colours := [3]string{"black", "red", "white"}
 ```
 
 - 切片的组合字面量方式如下
-```golang
+```go
 s := []string{"red", "black"} 
 //会自动补上切片的容量和长度
 ```
