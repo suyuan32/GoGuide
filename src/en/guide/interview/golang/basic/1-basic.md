@@ -3,11 +3,9 @@ order: 1
 title: "Basic"
 ---
 
-## Golang Basic Questions
+## Pointer
 
-### Pointer
-
-#### What is a pointer and a pointer variable?
+### What is a pointer and a pointer variable?
 <details> <summary>Click to expand</summary>
 Ordinary variables store data, while pointer variables store the address of the data.
 
@@ -32,7 +30,7 @@ fmt.Println(tamp) //output: 99
 ```
 </details>
 
-#### Why use pointers?
+### Why use pointers?
 <details> <summary>Click to expand</summary>
 
 **Significance One: Easy Coding**
@@ -49,7 +47,7 @@ Pointers can directly access and modify data in memory. Through pointers, we can
 Pointers can dynamically allocate memory during program execution. Through dynamic memory allocation, we can allocate and release memory as needed, thereby improving the flexibility and efficiency of the program.
 </details>
 
-#### How to use object selectors for automatic dereferencing?
+### How to use object selectors for automatic dereferencing?
 <details> <summary>Click to expand</summary>
 
 To get a value from a struct instance object, you can use `.`. This symbol is a **selector**.
@@ -114,9 +112,9 @@ func (p *animal) Say() {
 ```
 </details>
 
-### Literal
+## Literal
 
-#### What does literal mean?
+### What does literal mean?
 <details> <summary>Click to expand</summary>
 - The text of these basic type values below is a basic type literal.
 
@@ -137,7 +135,7 @@ func (p *animal) Say() {
 ```
 </details>
 
-#### Can different literals have the same value?
+### Can different literals have the same value?
 <details> <summary>Click to expand</summary>
 
 - A value can be represented by multiple literals. For example, the decimal value 21 can be represented by three different literals
@@ -157,7 +155,7 @@ func main() {
 ```
 </details>
 
-#### What is the difference between a literal and a variable?
+### What is the difference between a literal and a variable?
 <details> <summary>Click to expand</summary>
 
 - A literal is an unnamed constant, just like a constant, it is not addressable.
@@ -193,7 +191,7 @@ func main() {
 
 Translate to English:
 
-#### What is a composite literal?
+### What is a composite literal?
 <details> <summary>Click to expand</summary>
 
 - A composite literal is a way to define and initialize an object together. In other words, a composite literal is used to construct values for structures, arrays, slices, and maps, and each time a new value is created. They are followed by the type of the literal, curly braces, and a list of elements. Each element can optionally be preceded by a related key.
@@ -254,17 +252,17 @@ s := []string{"red", "black"}
 </details>
 
 
-### Others
-#### What is the difference between `rune` and `byte` in Go?
+## Others
+### What is the difference between `rune` and `byte` in Go?
 <details> <summary>Click to expand</summary>
 
 In Go language, `byte` and `rune` are both types used to represent characters, but there are some differences between them:
 
-##### Different types:
+#### Different types:
 -   byte: byte, is an alias type of uint8
 -   rune: character, is an alias type of int32
 
-##### Different stored characters:
+#### Different stored characters:
 ```go
 //byte is used to represent ASCII code characters, can only store characters within the range of 0-255.
 var a byte = 'Y'  // ASCII code character
@@ -273,7 +271,7 @@ var a byte = 'Y'  // ASCII code character
 var b rune = '酥'  // Unicode character
 ```
 
-##### Different byte sizes occupied: byte occupies 1 byte, rune occupies 4 bytes.
+#### Different byte sizes occupied: byte occupies 1 byte, rune occupies 4 bytes.
 
 ```go
 import "unsafe"
@@ -283,7 +281,7 @@ fmt.Printf("a occupies %d bytes\nb occupies %d bytes", unsafe.Sizeof(a), unsafe.
 // Output: a occupies 1 byte b occupies 4 bytes
 ```
 
-##### Different character ranges represented:
+#### Different character ranges represented:
 Since the value that the byte type can represent is limited, there are only 2^8=256. So if you want to represent Chinese, you can only use the rune type.
 
 String representation: In Go, strings are encoded in UTF-8, English letters occupy one byte, while Chinese letters occupy 3 bytes. For example:
