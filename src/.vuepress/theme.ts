@@ -28,7 +28,7 @@ export default hopeTheme({
       // sidebar
       sidebar: enSidebar,
 
-      footer: "Go Guide",
+      footer: "Go Guide all rights reserved, transportation prohibited",
 
       displayFooter: true,
 
@@ -47,7 +47,7 @@ export default hopeTheme({
       // sidebar
       sidebar: zhSidebar,
 
-      footer: "Go Guide",
+      footer: "Go Guide 版权所有，禁止搬运",
 
       displayFooter: true,
 
