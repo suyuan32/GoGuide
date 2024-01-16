@@ -21,7 +21,7 @@ export const enSidebar = sidebar({
           ]
         },
         {
-          text: "Interview Question",
+          text: "Interview Questions",
           icon: "solar:book-outline",
           prefix: "interview/",
           children: [
