@@ -5,6 +5,7 @@ title: "基础"
 
 ## Golang 基础问题
 
+### 指针
 
 #### 什么是指针和指针变量?
 <details> <summary>展开查看</summary>
@@ -49,14 +50,219 @@ fmt.Println(tamp) //output: 99
 指针可在程序运行时动态地分配内存。通过动态内存分配，我们可以根据需要分配和释放内存，从而提高程序的灵活性和效率。
 </details>
 
-####   Go 中的 rune 和 byte 有什么区别？
+
+
+#### 对象选择器自动解引用怎么用？
 <details> <summary>展开查看</summary>
 
-在 Go 语言中，byte 和 rune 都是用于表示字符的类型，但它们之间有一些区别：
+从结构体实例对象中获取值，可用 `.` ，此符号为 **选择器**。
+
+- 此做法可省去 `*` 操作，选择器 `.` 会直接解引用，示例如下
+
+```go
+type animal struct {
+	Name string
+}
+
+func main() {
+	p1 := &animal{"yikesu"}
+	fmt.Println(p1.Name)  
+}
+```
+- 过去通常如下
+```go
+type animal struct {
+	Name string
+}
+
+func main() {
+	p1 := &animal{"yikesu"}
+  fmt.Println((*p1).Name)  
+}
+```
+
+- 还有可省去 `*` 操作，选择器 `.` 会直接解引用，示例如下
+
+```go
+type animal struct {
+	Name string
+}
+
+func main() {
+	p1 := &animal{"yikesu"}
+	fmt.Println(p1.Name)  
+}
+```
+
+- 而可像下面这样
+```go
+type animal struct {
+	name string
+}
+
+func (p *animal) Say() {
+	fmt.Println(p.name)
+}
+```
+
+- 不必像下面这样
+```go
+type animal struct {
+	name string
+}
+
+func (p *animal) Say() {
+	fmt.Println((*p).name)
+}
+```
+</details>
+
+### 字面量
+
+#### 字面量是什么意思？
+<details> <summary>展开查看</summary>
+- 而下面这些基本类型值的文本，就是基本类型字面量。
+| 基本类型 | 集合                                                                                     |
+| -------- | ---------------------------------------------------------------------------------------- |
+| 布尔类型 | `bool`                                                                                   |
+| 字符串类 | `string`                                                                                 |
+| 复数类型 | `complex64` `complex128`                                                                 |
+| 浮点类型 | `float32` `float64`                                                                      |
+| 整数类型 | `int8` `uint8` `int16` `uint16` `int32` `uint32` `int64` `uint64` `int` `uint` `uintptr` |
+
+
+
+- 未命名常量是一种特殊的常量，它没有具体的名称。这种常量只有值，没有与之关联的变量名。
+  如下字符串都是字符串字面量，就是 **未命名常量**。
+```
+"hello，world"   "123"
+```
+</details>
+
+####  不同字面量可能同值吗？
+<details> <summary>展开查看</summary>
+
+- 一个值可存在多种字面量表示，如下十进制的数值 21，可由三种字面量表示
+| 10进制 | 8进制 | 2进制       | 16进制 |
+| ------ | ----- | ----------- | ------ |
+| 21     | 0o25  | 0b0001 0101 | 0x15   |
+
+```go
+import "fmt"
+
+func main() {
+	fmt.Println(21 == 0o25)     
+	fmt.Println(21 == 0x15 )    
+	fmt.Println(21 == 0b0001 0101)  
+}// 由运行结果得出他们相等
+```
+</details>
+
+####  字面量和变量的区别是什么？
+<details> <summary>展开查看</summary>
+
+- 字面量，就是未命名的常量，跟常量一样，是不可寻址的。
+
+- 举例如下
+
+```go
+func run() string {
+	return "fast"
+}
+
+func main() {
+	fmt.Println(&run())
+}
+```
+```go
+./main.go:10:14: cannot take the address of run()
+```
+- 若不用变量名承接，函数返回的一个字符串的文本值，也就是字符串字面量，
+而这种字面量是不可寻址的，会出现错误。要用 `&` 寻址，须用变量名承接。
+
+- 而下面这样就没错
+```go
+func run() string {
+	return "fast"
+}
+func main() {
+	t := run()
+	fmt.Println(&t)
+}
+```
+</details>
+
+####  什么是组合字面量？
+<details> <summary>展开查看</summary>
+
+- 组合字面量就是把对象的定义和初始化放在了一起，进一步说，组合字面量是为结构体、数组、切片和map构造值，并且每次都会创建新值。它们由字面量的类型后紧跟大括号及元素列表。每个元素前面可以选择性的带一个相关key。
+
+
+- 使用组合字面量会简单一些，而结构体、数组、切片和map的组合字面量方式如下。
+
+- 结构体用组合字面量方式来定义和初始化
+```golang
+type man struct {
+	nationality string
+	height int
+}
+func main() {
+	// 声明和属性赋值
+	su := man{
+		nationality:   "China",
+		height:    180,
+	}
+}
+```
+
+- 结构体用繁琐的常规方式如下
+  
+```golang
+type man struct {
+	nationality string
+	height int
+}
+
+func main() {
+	// 声明对象
+	var su man
+	// 属性赋值
+	su.nationality = "China"
+	su.height = 180
+}
+```
+
+- map用组合字面量方式的定义和初始化如下
+
+```golang
+m := map[string]int {
+	"math": 96,
+	"Chinese": 90,
+}
+```
+
+- 同样的，数组用组合字面量方式的定义和初始化可以如下
+```golang
+colours := [3]string{"black", "red", "white"}
+```
+
+- 切片的组合字面量方式如下
+```golang
+s := []string{"red", "black"} 
+//会自动补上切片的容量和长度
+```
+</details>
+
+
+### 其他
+####   Go 中的 `rune` 和 `byte` 有什么区别？
+<details> <summary>展开查看</summary>
+
+在 Go 语言中，`byte` 和 `rune` 都是用于表示字符的类型，但它们之间有一些区别：
 
 ##### 类型不同：
-1.   byte ：字节，是 uint8 的别名类型
-2.   rune ：字符，是 int32 的别名类型
+-   byte ：字节，是 uint8 的别名类型
+-   rune ：字符，是 int32 的别名类型
 
 ##### 存储的字符不同：
 ```go
@@ -94,5 +300,3 @@ a 占用 1 个字节数
 b 占用 4 个字节数
 ```
 </details>
-
-
