@@ -1,7 +1,7 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export const zhSidebar = sidebar({
-  "/zh/": [
+  "/": [
     {
       text: "面试宝典",
       icon: "mingcute:book-line",
@@ -21,11 +21,18 @@ export const zhSidebar = sidebar({
           ]
         },
         {
-          text: "Golang",
-          icon: "grommet-icons:golang",
-          prefix: "basic/",
-          children: "structure"
-        }
+          text: "面试题",
+          icon: "solar:book-outline",
+          prefix: "interview/",
+          children: [
+            {
+              text: "Golang",
+              icon: "grommet-icons:golang",
+              prefix: "golang/basic/",
+              children: "structure"
+            }
+          ]
+        },
       ],
     },
   ],

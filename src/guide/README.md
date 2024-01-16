@@ -1,8 +1,8 @@
 ---
-title: Guide
+title: 指南
 icon: mingcute:book-line
 ---
 
-## introduce
+## 介绍
 
-This website mainly provides Golang interview frequently asked questions and basic knowledge.
+本栏目主要提供 Golang 面试常见问题。

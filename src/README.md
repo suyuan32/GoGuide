@@ -1,15 +1,15 @@
 ---
 home: true
 icon: home
-title: Go Guide
+title: Go 面试宝典
 heroImage: /logo.svg
-heroText: Go Guide
-tagline: Golang interview guide
+heroText: Go 面试宝典
+tagline: Golang 面试基础，常见面试题。
 actions:
-  - text: Guide
+  - text: 指南
     link: ./guide/
     type: primary
 
 
 copyright: false
-footer: Apache2.0 license, Copyright © 2024-present Go Guide
+footer: Apache2.0 协议, 版权所有 © 2024-present Go Guide
