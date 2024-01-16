@@ -138,6 +138,65 @@ func (p *animal) Say() {
 ```
 </details>
 
+###  什么是有类型常量和无类型常量？
+<details> <summary>展开查看</summary>
+
+- Golang 中，常量分为有类型常量和无类型常量。
+
+```go
+// 无类型常量
+const A = 8
+
+// 有类型常量
+const colour string = "red"
+```
+
+- 当无类型的常量被赋值给一个变量的时，无类型的常量会转化成对应的类型
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A = 8
+
+	var t int16 = A
+	fmt.Printf("%T ", t) 
+}//输出： int16 
+```
+- 或者进行显式的转换
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A int8 = 8
+
+	var t int16 = int16(A) 
+	fmt.Printf("%T ", t)  //输出： int16
+}
+```
+
+- 而有类型常量在赋值的时，类型不同会报错
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A int8 = 8
+
+	var t int16 = A 
+	fmt.Printf("type: %T \n", t) 
+//出错： cannot use A (type int8) as type int16 in assignment
+}
+```
+</details>
+
 ###  不同字面量可能同值吗？
 <details> <summary>展开查看</summary>
 
@@ -293,10 +352,37 @@ var world string = "world,世界"
 fmt.Println(len(world))  // 输出 12
 var a byte = 'G'
 var b rune = 'O'
-fmt.Printf("a 占用 %d 个字节数\n", unsafe.Sizeof(a))
-fmt.Printf("b 占用 %d 个字节数\n",unsafe.Sizeof(b))
-// output
-a 占用 1 个字节数
-b 占用 4 个字节数
+fmt.Printf("a 占用 %d 个字节数  ", unsafe.Sizeof(a))
+fmt.Printf("b 占用 %d 个字节数  ", unsafe.Sizeof(b))
+// output a 占用 1 个字节数  b 占用 4 个字节数
 ```
 </details>
+
+
+## 语法相关基础
+
+###  Go 中 = 与 := 的不同是什么？
+<details> <summary>展开查看</summary>
+
+```
+ `=` 是赋值
+ `:=` 是声明并赋值
+```
+
+赋值前，要声明其类型。
+```go
+var people int
+people = 8
+```
+
+而用 `:=` 可合成一行代码
+```go
+people := 8
+```
+
+- 一个变量仅能声明一次，不能多次用:=声明，多次用:=声明会出现如下错误
+```
+  no new variables on left side of :=
+```
+</details>
+
