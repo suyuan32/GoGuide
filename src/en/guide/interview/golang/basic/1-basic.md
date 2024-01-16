@@ -119,6 +119,7 @@ func (p *animal) Say() {
 #### What does literal mean?
 <details> <summary>Click to expand</summary>
 - The text of these basic type values below is a basic type literal.
+
 | Basic Type   | Collection                                                                               |
 | ------------ | ---------------------------------------------------------------------------------------- |
 | Boolean Type | `bool`                                                                                   |
@@ -140,6 +141,7 @@ func (p *animal) Say() {
 <details> <summary>Click to expand</summary>
 
 - A value can be represented by multiple literals. For example, the decimal value 21 can be represented by three different literals
+
 | Decimal | Octal | Binary      | Hexadecimal |
 | ------- | ----- | ----------- | ----------- |
 | 21      | 0o25  | 0b0001 0101 | 0x15        |
@@ -199,7 +201,7 @@ Translate to English:
 - Using composite literals can be simpler, and the composite literal methods for structures, arrays, slices, and maps are as follows.
 
 - Structures use composite literals to define and initialize
-```golang
+```go
 type man struct {
 	nationality string
 	height int
@@ -215,7 +217,7 @@ func main() {
 
 - Structures use the cumbersome conventional method as follows
   
-```golang
+```go
 type man struct {
 	nationality string
 	height int
@@ -232,7 +234,7 @@ func main() {
 
 - Map uses composite literal method for definition and initialization as follows
 
-```golang
+```go
 m := map[string]int {
 	"math": 96,
 	"Chinese": 90,
@@ -240,12 +242,12 @@ m := map[string]int {
 ```
 
 - Similarly, arrays use composite literal method for definition and initialization as follows
-```golang
+```go
 colours := [3]string{"black", "red", "white"}
 ```
 
 - Slices use composite literal method as follows
-```golang
+```go
 s := []string{"red", "black"} 
 // The capacity and length of the slice will be automatically filled in
 ```
