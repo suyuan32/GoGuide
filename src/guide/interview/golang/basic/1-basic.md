@@ -3,11 +3,9 @@ order: 1
 title: "基础"
 ---
 
-## Golang 基础问题
+## 指针
 
-### 指针
-
-#### 什么是指针和指针变量?
+### 什么是指针和指针变量?
 <details> <summary>展开查看</summary>
 普通变量存储数据，而指针变量存储的是数据的地址。
 
@@ -33,7 +31,7 @@ fmt.Println(tamp) //output: 99
 ```
 </details>
 
-#### 为什么使用指针？
+### 为什么使用指针？
 <details> <summary>展开查看</summary>
 
 **意义一：容易编码**
@@ -52,7 +50,7 @@ fmt.Println(tamp) //output: 99
 
 
 
-#### 对象选择器自动解引用怎么用？
+### 对象选择器自动解引用怎么用？
 <details> <summary>展开查看</summary>
 
 从结构体实例对象中获取值，可用 `.` ，此符号为 **选择器**。
@@ -117,9 +115,9 @@ func (p *animal) Say() {
 ```
 </details>
 
-### 字面量
+## 字面量
 
-#### 字面量是什么意思？
+### 字面量是什么意思？
 <details> <summary>展开查看</summary>
 
 - 而下面这些基本类型值的文本，就是基本类型字面量。
@@ -140,7 +138,66 @@ func (p *animal) Say() {
 ```
 </details>
 
-####  不同字面量可能同值吗？
+###  什么是有类型常量和无类型常量？
+<details> <summary>展开查看</summary>
+
+- Golang 中，常量分为有类型常量和无类型常量。
+
+```go
+// 无类型常量
+const A = 8
+
+// 有类型常量
+const colour string = "red"
+```
+
+- 当无类型的常量被赋值给一个变量的时，无类型的常量会转化成对应的类型
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A = 8
+
+	var t int16 = A
+	fmt.Printf("%T ", t) 
+}//输出： int16 
+```
+- 或者进行显式的转换
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A int8 = 8
+
+	var t int16 = int16(A) 
+	fmt.Printf("%T ", t)  //输出： int16
+}
+```
+
+- 而有类型常量在赋值的时，类型不同会报错
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	const A int8 = 8
+
+	var t int16 = A 
+	fmt.Printf("type: %T \n", t) 
+//出错： cannot use A (type int8) as type int16 in assignment
+}
+```
+</details>
+
+###  不同字面量可能同值吗？
 <details> <summary>展开查看</summary>
 
 - 一个值可存在多种字面量表示，如下十进制的数值 21，可由三种字面量表示
@@ -160,7 +217,7 @@ func main() {
 ```
 </details>
 
-####  字面量和变量的区别是什么？
+###  字面量和变量的区别是什么？
 <details> <summary>展开查看</summary>
 
 - 字面量，就是未命名的常量，跟常量一样，是不可寻址的。
@@ -194,7 +251,7 @@ func main() {
 ```
 </details>
 
-####  什么是组合字面量？
+###  什么是组合字面量？
 <details> <summary>展开查看</summary>
 
 - 组合字面量就是把对象的定义和初始化放在了一起，进一步说，组合字面量是为结构体、数组、切片和map构造值，并且每次都会创建新值。它们由字面量的类型后紧跟大括号及元素列表。每个元素前面可以选择性的带一个相关key。
@@ -256,17 +313,17 @@ s := []string{"red", "black"}
 </details>
 
 
-### 其他
-####   Go 中的 `rune` 和 `byte` 有什么区别？
+## 其他
+###   Go 中的 `rune` 和 `byte` 有什么区别？
 <details> <summary>展开查看</summary>
 
 在 Go 语言中，`byte` 和 `rune` 都是用于表示字符的类型，但它们之间有一些区别：
 
-##### 类型不同：
+#### 类型不同：
 -   byte ：字节，是 uint8 的别名类型
 -   rune ：字符，是 int32 的别名类型
 
-##### 存储的字符不同：
+#### 存储的字符不同：
 ```go
 //byte 用于表示 ASCII 码字符，只能存储 0-255 范围内的字符。
 var a byte = 'Y'  // ASCII 码字符
@@ -275,7 +332,7 @@ var a byte = 'Y'  // ASCII 码字符
 var b rune = '酥'  // Unicode 字符
 ```
 
-##### 占用的字节大小不同：byte 占用1个字节，rune 占用4个字节。
+#### 占用的字节大小不同：byte 占用1个字节，rune 占用4个字节。
 
 ```go
 import "unsafe"
@@ -285,7 +342,7 @@ fmt.Printf("a 占用 %d 个字节数\nb 占用 %d 个字节数", unsafe.Sizeof(a
 // 输出: a 占用 1 个字节数 b 占用 4 个字节数
 ```
 
-##### 表示的字符范围不同：
+#### 表示的字符范围不同：
 由于 byte 类型能表示的值是有限的，只有 2^8=256 个。所以想表示中文只能使用 rune 类型。
 
 字符串表示：在 Go 中，字符串是用 UTF-8 进行编码的，英文字母占用一个字节，而中文字母占用 3个字节1。例如：
@@ -295,10 +352,37 @@ var world string = "world,世界"
 fmt.Println(len(world))  // 输出 12
 var a byte = 'G'
 var b rune = 'O'
-fmt.Printf("a 占用 %d 个字节数\n", unsafe.Sizeof(a))
-fmt.Printf("b 占用 %d 个字节数\n",unsafe.Sizeof(b))
-// output
-a 占用 1 个字节数
-b 占用 4 个字节数
+fmt.Printf("a 占用 %d 个字节数  ", unsafe.Sizeof(a))
+fmt.Printf("b 占用 %d 个字节数  ", unsafe.Sizeof(b))
+// output a 占用 1 个字节数  b 占用 4 个字节数
 ```
 </details>
+
+
+## 语法相关基础
+
+###  Go 中 = 与 := 的不同是什么？
+<details> <summary>展开查看</summary>
+
+```
+ `=` 是赋值
+ `:=` 是声明并赋值
+```
+
+赋值前，要声明其类型。
+```go
+var people int
+people = 8
+```
+
+而用 `:=` 可合成一行代码
+```go
+people := 8
+```
+
+- 一个变量仅能声明一次，不能多次用:=声明，多次用:=声明会出现如下错误
+```
+  no new variables on left side of :=
+```
+</details>
+
