@@ -1,6 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import { enNavbar, zhNavbar } from "./navbar/index.js";
 import { enSidebar, zhSidebar } from "./sidebar/index.js";
+import { cut } from "@node-rs/jieba";
 
 export default hopeTheme({
   hostname: "https://goguide.ryansu.tech",
@@ -56,9 +57,6 @@ export default hopeTheme({
         editLink: "在 GitHub 上编辑此页",
       },
     },
-  },
-
-  encrypt: {
   },
 
   plugins: {
@@ -142,6 +140,23 @@ export default hopeTheme({
 
       // install sandpack-vue3 before enabling it
       // sandpack: true,
+    },
+
+    searchPro: {
+      // 索引全部内容
+      indexContent: true,
+      indexLocaleOptions: {
+        "/zh/": {
+          // 使用 nodejs-jieba 进行分词
+          tokenize: (text, fieldName) =>
+            fieldName === "id" ? [text] : cut(text, true),
+        },
+      },
+      locales: {
+        "/zh/": {
+          placeholder: " 开始搜索",
+        },
+      },
     },
 
     // install vuepress-plugin-pwa2 and uncomment these if you want a PWA
