@@ -10,24 +10,18 @@ title: "基础"
 普通变量存储数据，而指针变量存储的是数据的地址。
 
 - 学习指针，主要有两个运算符号`&`和`*`。
-
-
--   `&`：地址运算符，从变量中取地址
+  1.  `&`：地址运算符，从变量中取地址
+  2.  `*`：引用运算符，取地址中数据
 
 ```go
-// 定义普通变量并打印
 num := 99
-fmt.Println(num) //output: 99
+fmt.Println(num) //输出: 99
 
 ptr := &num
-fmt.Println(ptr) //output: 例如：0xc000086020
-```
+fmt.Println(ptr) //输出: 例如：0xc000086020
 
--   `*`：引用运算符，取地址中数据
-
-```go
 tamp := *ptr
-fmt.Println(tamp) //output: 99
+fmt.Println(tamp) //输出: 99
 ```
 </details>
 
@@ -384,5 +378,85 @@ people := 8
 ```
   no new variables on left side of :=
 ```
+</details>
+
+
+
+##  golang中的深拷贝和浅拷贝是什么？
+<details> <summary>展开查看</summary>
+
+- 什么是拷贝？
+
+拷贝最简单的一种形式如下
+```go
+a := 648
+b := a    //把a 拷贝给 b
+```
+
+- 那什么是深拷贝和浅拷贝？
+
+深浅拷贝也和类型有关
+
+| 值类型   | String，Array，Int，Struct，Float，Bool  |
+| -------- | ---------------------------------------- |
+| 引用类型 | Slice，Map,Channels,Interfaces,Functions |
+
+两种类型拷贝效果不同，先说我们比较熟悉的值类型。如什么是拷贝提问里易知，
+若是值类型的话，在每一次拷贝后都会新申请一块空间存储值，拷贝后的两个值类型独立不影响。
+
+- 以引用类型的切片(Slice)为例来讲讲深拷贝和浅拷贝
+
+| 浅拷贝   | slice1 = slice2      |
+| -------- | -------------------- |
+| 深度拷贝 | copy(slice1, slice2) |
+
+ `浅拷贝`仅改变指针的指向，如下
+
+```go
+package main
+import "fmt"
+
+func main() {
+var slice1 = []int{7, 8, 9}     
+var slice2 = make([]int, 3)  //切片初始化
+	slice2 = slice1    //浅拷贝改变了slice2的指向
+	fmt.Println(slice1) 
+	slice2[0] = 648  // 改变slice2[0]，slice1[0]也改变
+	fmt.Println(slice2) 
+	fmt.Println(slice1) 
+}
+```
+输出结果如下
+
+```go
+[7 8 9]
+[648 8 9]
+[648 8 9]
+```
+
+- 所以对于切片来说，`浅拷贝`改变了它的地址。
+
+- 而`深拷贝`会改变地址的内存内的数组值，如下
+
+```go
+package main
+import "fmt"
+
+func main() {
+var slice1 = []int{7, 8, 9}     
+var slice2 = make([]int, 3) //切片初始化
+	copy(slice2, slice1)  //深拷贝会改变地址的内存内的数组值
+	fmt.Println(slice2) 
+	slice2[0] = 648  // 改变slice2[0]，slice1[0]不变
+	fmt.Println(slice2) 
+	fmt.Println(slice1) 
+}
+```
+```go
+[7 8 9]
+[648 8 9]
+[7 8 9]
+```
+
 </details>
 
