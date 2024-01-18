@@ -118,9 +118,9 @@ data := [5]int{1, 2, 3, 4, 5}
 
 </details>
 
-## 分片 (slices)
+## 切片 (slices)
 
-分片是动态的数组，可根据数据自动调整容量大小
+切片是动态的数组，可根据数据自动调整容量大小
 
 <details>
 <summary>例子</summary>

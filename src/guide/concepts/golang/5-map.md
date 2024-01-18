@@ -1,6 +1,6 @@
 ---
 order: 5
-title: "Map 详解"
+title: "Map (集合)"
 ---
 
 ## 创建 Map
@@ -22,6 +22,9 @@ var m map[string]int
 
 // 使用 make 初始化 map
 m = make(map[string]int)
+
+// 使用 make 初始化 map, 并设置容量
+// m = make(map[string]int, 10)
 
 // 设置值
 m["path"] = 66

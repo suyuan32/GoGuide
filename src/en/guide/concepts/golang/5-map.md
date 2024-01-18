@@ -23,6 +23,9 @@ var m map[string]int
 // Initialize the map using make
 m = make(map[string]int)
 
+//  Initialize the map using make and set capacity
+// m = make(map[string]int, 10)
+
 // Set the value
 m["path"] = 66
 
