@@ -47,69 +47,28 @@ Pointers can directly access and modify data in memory. Through pointers, we can
 Pointers can dynamically allocate memory during program execution. Through dynamic memory allocation, we can allocate and release memory as needed, thereby improving the flexibility and efficiency of the program.
 </details>
 
-### How to use object selectors for automatic dereferencing?
-<details> <summary>Click to expand</summary>
+### Which objects can be addressed and which cannot?
 
-To get a value from a struct instance object, you can use `.`. This symbol is a **selector**.
+<details>
+<summary>Click to expand</summary>
 
-- This method can save the `*` operation, the selector `.` will directly dereference, as shown in the example below
+The following objects can be addressed using `&` to obtain their memory addresses:
 
-```go
-type animal struct {
-	Name string
-}
+- Variables
+- Pointers
+- Arrays, slices, and their internal data
+- Struct pointers
+- Map
 
-func main() {
-	p1 := &animal{"yikesu"}
-	fmt.Println(p1.Name)  
-}
-```
-- It used to be like this
-```go
-type animal struct {
-	Name string
-}
+The following objects cannot be addressed:
 
-func main() {
-	p1 := &animal{"yikesu"}
-  fmt.Println((*p1).Name)  
-}
-```
+- Structs
+- Constants
+- Literals
+- Functions
+- Non-pointer elements of maps
+- Array literals
 
-- Also, you can save the `*` operation, the selector `.` will directly dereference, as shown in the example below
-
-```go
-type animal struct {
-	Name string
-}
-
-func main() {
-	p1 := &animal{"yikesu"}
-	fmt.Println(p1.Name)  
-}
-```
-
-- And it can be like this
-```go
-type animal struct {
-	name string
-}
-
-func (p *animal) Say() {
-	fmt.Println(p.name)
-}
-```
-
-- Instead of like this
-```go
-type animal struct {
-	name string
-}
-
-func (p *animal) Say() {
-	fmt.Println((*p).name)
-}
-```
 </details>
 
 ## Literal
@@ -127,9 +86,17 @@ func (p *animal) Say() {
 | Integer Type | `int8` `uint8` `int16` `uint16` `int32` `uint32` `int64` `uint64` `int` `uint` `uintptr` |
 
 
+For example:
+
+```go
+s := "hello world" // "hello world" is the literal value
+n := 10 // 10 is the literal value
+```
+
 
 - An unnamed constant is a special kind of constant that doesn't have a specific name. This kind of constant only has a value, and there is no variable name associated with it.
   The following strings are string literals, which are **unnamed constants**.
+
 ```
 "hello，world"   "123"
 ```
@@ -188,8 +155,6 @@ func main() {
 }
 ```
 </details>
-
-Translate to English:
 
 ### What is a composite literal?
 <details> <summary>Click to expand</summary>
@@ -284,17 +249,86 @@ fmt.Printf("a occupies %d bytes\nb occupies %d bytes", unsafe.Sizeof(a), unsafe.
 #### Different character ranges represented:
 Since the value that the byte type can represent is limited, there are only 2^8=256. So if you want to represent Chinese, you can only use the rune type.
 
-String representation: In Go, strings are encoded in UTF-8, English letters occupy one byte, while Chinese letters occupy 3 bytes. For example:
+</details>
+
+Here is the English translation of your text:
+
+### What are deep copy and shallow copy in golang?
+<details> <summary>Expand to view</summary>
+
+- What is copying?
+
+The simplest form of copying is as follows
+```go
+a := 648
+b := a    //copy a to b
+```
+
+- So what are deep copy and shallow copy?
+
+Deep and shallow copying also depend on the type.
+
+| Type           | Details                                           |
+| -------------- | ------------------------------------------------- |
+| Reference type | `Slice` `Map` `Channels` `Interfaces` `Functions` |
+| Value type     | `String` `Array` `Int` `Struct` `Float` `Bool`    |
+
+The effects of copying two types are different. Let's first talk about the value type that we are more familiar with. As can be seen from the question of what is copying, if it is a value type, a new space will be allocated to store the value every time it is copied, and the two copied value types are independent and do not affect each other.
+
+- Take the reference type slice as an example to talk about deep copy and shallow copy
+
+| Type         | Example              |
+| ------------ | -------------------- |
+| Deep copy    | copy(slice1, slice2) |
+| Shallow copy | slice1 = slice2      |
+
+`Shallow copy` only changes the pointer, as follows
 
 ```go
-var world string = "world,世界"
-fmt.Println(len(world))  // Output 12
-var a byte = 'G'
-var b rune = 'O'
-fmt.Printf("a occupies %d bytes\n", unsafe.Sizeof(a))
-fmt.Printf("b occupies %d bytes\n",unsafe.Sizeof(b))
-// output
-a occupies 1 byte
-b occupies 4 bytes
+package main
+import "fmt"
+
+func main() {
+	var slice1 = []int{7, 8, 9}     
+	var slice2 = make([]int, 3)  //slice initialization
+	slice2 = slice1    //shallow copy changes the pointer of slice2
+	fmt.Println(slice1) 
+	slice2[0] = 648  // change slice2[0], slice1[0] also changes
+	fmt.Println(slice2) 
+	fmt.Println(slice1) 
+}
 ```
+The output is as follows
+
+```go
+[7 8 9]
+[648 8 9]
+[648 8 9]
+```
+
+- So for slices, `shallow copy` changes its address.
+
+- And `deep copy` will change the array value in the memory of the address, as follows
+
+```go
+package main
+import "fmt"
+
+func main() {
+	var slice1 = []int{7, 8, 9}     
+	var slice2 = make([]int, 3) //slice initialization
+	copy(slice2, slice1)  //deep copy will change the array value in the memory of the address
+	fmt.Println(slice2) 
+	slice2[0] = 648  // change slice2[0], slice1[0] remains unchanged
+	fmt.Println(slice2) 
+	fmt.Println(slice1) 
+}
+```
+```go
+[7 8 9]
+[648 8 9]
+[7 8 9]
+```
+
 </details>
+

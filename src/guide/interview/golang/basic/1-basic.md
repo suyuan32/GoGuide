@@ -3,6 +3,7 @@ order: 1
 title: "基础"
 ---
 
+
 ## 指针
 
 ### 什么是指针和指针变量?
@@ -42,79 +43,37 @@ fmt.Println(tamp) //输出: 99
 指针可在程序运行时动态地分配内存。通过动态内存分配，我们可以根据需要分配和释放内存，从而提高程序的灵活性和效率。
 </details>
 
+### 哪些对象可以获取地址，哪些不行？
 
+<details>
+<summary>展开查看</summary>
 
-### 对象选择器自动解引用怎么用？
-<details> <summary>展开查看</summary>
+可以使用 `&` 获取内存地址的对象：
 
-从结构体实例对象中获取值，可用 `.` ，此符号为 **选择器**。
+- 变量
+- 指针
+- 数组，切片及其内部数据
+- 结构体指针
+- Map
+  
+不能寻址的对象:
 
-- 此做法可省去 `*` 操作，选择器 `.` 会直接解引用，示例如下
+- 结构体
+- 常量
+- 字面量
+- 函数
+- map 非指针元素
+- 数组字面量
 
-```go
-type animal struct {
-	Name string
-}
-
-func main() {
-	p1 := &animal{"yikesu"}
-	fmt.Println(p1.Name)  
-}
-```
-- 过去通常如下
-```go
-type animal struct {
-	Name string
-}
-
-func main() {
-	p1 := &animal{"yikesu"}
-  fmt.Println((*p1).Name)  
-}
-```
-
-- 还有可省去 `*` 操作，选择器 `.` 会直接解引用，示例如下
-
-```go
-type animal struct {
-	Name string
-}
-
-func main() {
-	p1 := &animal{"yikesu"}
-	fmt.Println(p1.Name)  
-}
-```
-
-- 而可像下面这样
-```go
-type animal struct {
-	name string
-}
-
-func (p *animal) Say() {
-	fmt.Println(p.name)
-}
-```
-
-- 不必像下面这样
-```go
-type animal struct {
-	name string
-}
-
-func (p *animal) Say() {
-	fmt.Println((*p).name)
-}
-```
 </details>
+
 
 ## 字面量
 
 ### 字面量是什么意思？
 <details> <summary>展开查看</summary>
 
-- 而下面这些基本类型值的文本，就是基本类型字面量。
+- 下面这些基本类型赋值的文本，就是基本类型字面量。
 
 | 基本类型 | 集合                                                                                     |
 | -------- | ---------------------------------------------------------------------------------------- |
@@ -124,6 +83,12 @@ func (p *animal) Say() {
 | 浮点类型 | `float32` `float64`                                                                      |
 | 整数类型 | `int8` `uint8` `int16` `uint16` `int32` `uint32` `int64` `uint64` `int` `uint` `uintptr` |
 
+如 
+
+```go
+s := "hello world" // "hello world" 就是字面量
+n := 10 // 10 就是字面量
+```
 
 - 未命名常量是一种特殊的常量，它没有具体的名称。这种常量只有值，没有与之关联的变量名。
   如下字符串都是字符串字面量，就是 **未命名常量**。
@@ -314,8 +279,8 @@ s := []string{"red", "black"}
 在 Go 语言中，`byte` 和 `rune` 都是用于表示字符的类型，但它们之间有一些区别：
 
 #### 类型不同：
--   byte ：字节，是 uint8 的别名类型
--   rune ：字符，是 int32 的别名类型
+-   `byte` ：字节，是 `uint8` 的别名类型
+-   `rune` ：字符，是 `int32` 的别名类型
 
 #### 存储的字符不同：
 ```go
@@ -339,50 +304,10 @@ fmt.Printf("a 占用 %d 个字节数\nb 占用 %d 个字节数", unsafe.Sizeof(a
 #### 表示的字符范围不同：
 由于 byte 类型能表示的值是有限的，只有 2^8=256 个。所以想表示中文只能使用 rune 类型。
 
-字符串表示：在 Go 中，字符串是用 UTF-8 进行编码的，英文字母占用一个字节，而中文字母占用 3个字节1。例如：
-
-```go
-var world string = "world,世界"
-fmt.Println(len(world))  // 输出 12
-var a byte = 'G'
-var b rune = 'O'
-fmt.Printf("a 占用 %d 个字节数  ", unsafe.Sizeof(a))
-fmt.Printf("b 占用 %d 个字节数  ", unsafe.Sizeof(b))
-// output a 占用 1 个字节数  b 占用 4 个字节数
-```
 </details>
 
 
-## 语法相关基础
-
-###  Go 中 = 与 := 的不同是什么？
-<details> <summary>展开查看</summary>
-
-```
- `=` 是赋值
- `:=` 是声明并赋值
-```
-
-赋值前，要声明其类型。
-```go
-var people int
-people = 8
-```
-
-而用 `:=` 可合成一行代码
-```go
-people := 8
-```
-
-- 一个变量仅能声明一次，不能多次用:=声明，多次用:=声明会出现如下错误
-```
-  no new variables on left side of :=
-```
-</details>
-
-
-
-##  golang中的深拷贝和浅拷贝是什么？
+###  Golang中的深拷贝和浅拷贝是什么？
 <details> <summary>展开查看</summary>
 
 - 什么是拷贝？
@@ -397,18 +322,20 @@ b := a    //把a 拷贝给 b
 
 深浅拷贝也和类型有关
 
-| 值类型   | String，Array，Int，Struct，Float，Bool  |
-| -------- | ---------------------------------------- |
-| 引用类型 | Slice，Map,Channels,Interfaces,Functions |
+| 类型     | 详情                                              |
+| -------- | ------------------------------------------------- |
+| 引用类型 | `Slice` `Map` `Channels` `Interfaces` `Functions` |
+| 值类型   | `String` `Array` `Int` `Struct` `Float` `Bool`    |
 
 两种类型拷贝效果不同，先说我们比较熟悉的值类型。如什么是拷贝提问里易知，
 若是值类型的话，在每一次拷贝后都会新申请一块空间存储值，拷贝后的两个值类型独立不影响。
 
 - 以引用类型的切片(Slice)为例来讲讲深拷贝和浅拷贝
 
-| 浅拷贝   | slice1 = slice2      |
+| 类型     | 例子                 |
 | -------- | -------------------- |
 | 深度拷贝 | copy(slice1, slice2) |
+| 浅拷贝   | slice1 = slice2      |
 
  `浅拷贝`仅改变指针的指向，如下
 
@@ -417,8 +344,8 @@ package main
 import "fmt"
 
 func main() {
-var slice1 = []int{7, 8, 9}     
-var slice2 = make([]int, 3)  //切片初始化
+	var slice1 = []int{7, 8, 9}     
+	var slice2 = make([]int, 3)  //切片初始化
 	slice2 = slice1    //浅拷贝改变了slice2的指向
 	fmt.Println(slice1) 
 	slice2[0] = 648  // 改变slice2[0]，slice1[0]也改变
@@ -443,8 +370,8 @@ package main
 import "fmt"
 
 func main() {
-var slice1 = []int{7, 8, 9}     
-var slice2 = make([]int, 3) //切片初始化
+	var slice1 = []int{7, 8, 9}     
+	var slice2 = make([]int, 3) //切片初始化
 	copy(slice2, slice1)  //深拷贝会改变地址的内存内的数组值
 	fmt.Println(slice2) 
 	slice2[0] = 648  // 改变slice2[0]，slice1[0]不变
@@ -460,3 +387,5 @@ var slice2 = make([]int, 3) //切片初始化
 
 </details>
 
+
+### 
