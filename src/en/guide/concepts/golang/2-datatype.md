@@ -211,3 +211,24 @@ num = &n
 ```
 
 </details>
+
+## Zero Value Table
+
+| **Type**                        | **Zero Value**                                              |
+| ------------------------------- | ----------------------------------------------------------- |
+| uint/uint8/uint16/uint32/uint64 | 0                                                           |
+| int/int8/int16/int32/int64      | 0                                                           |
+| float32/float64                 | 0                                                           |
+| complex64/complex128            | 0+0i                                                        |
+| bool                            | false                                                       |
+| uintptr                         | 0                                                           |
+| byte                            | 0                                                           |
+| rune                            | 0                                                           |
+| string                          | ""                                                          |
+| struct                          | All internal attributes are their corresponding zero values |
+| interface                       | nil                                                         |
+| slice                           | nil                                                         |
+| map                             | nil                                                         |
+| chan                            | nil                                                         |
+| func                            | nil                                                         |
+| pointer                         | nil                                                         |

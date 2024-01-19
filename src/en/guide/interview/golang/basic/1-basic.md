@@ -254,7 +254,7 @@ Since the value that the byte type can represent is limited, there are only 2^8=
 Here is the English translation of your text:
 
 ### What are deep copy and shallow copy in golang?
-<details> <summary>Expand to view</summary>
+<details> <summary>Click to expand</summary>
 
 - What is copying?
 
@@ -332,3 +332,165 @@ func main() {
 
 </details>
 
+### What's the difference between `make` and `new`?
+
+<details>
+<summary>Click to expand</summary>
+
+`new` is used to allocate memory for any type and return a pointer to that type, initializing the value to zero.
+
+> `new` is not commonly used
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	s := new(string)
+	n := new(int)
+
+	fmt.Println(s) // 0xc00008a030
+	fmt.Println(*s) // ""
+
+	fmt.Println(n) // 0xc00000a0d8
+	fmt.Println(*n) // 0
+}
+```
+
+`make` is mainly used for initializing `slices`, `map`, and `channel`.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	m := make(map[string]int, 10)
+
+	fmt.Println(m) // map[]
+
+}
+```
+
+</details>
+
+### What's the difference between arrays and slices?
+
+<details>
+<summary>Click to expand</summary>
+
+- The length of an array is fixed, determined at creation, and cannot be changed. The length of a slice is dynamic and will automatically expand based on the data added.
+- When passing parameters in functions, data is passed by value, while slices are passed by reference.
+- Slices have a capacity (capacity) parameter, arrays do not.
+
+</details>
+
+### If `for range` adds data at the same time, will `for range` execute indefinitely?
+
+<details>
+<summary>Click to expand</summary>
+
+No, when executing `for range`, the actual traversal is a copy of the variable, so changing the traversed variable is not nutritious.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	n := []int{1, 2, 3}
+
+	for  _, v := range n {
+		n = append(n, v)
+	}
+
+	fmt.Println(n) // Result: [1 2 3 1 2 3]
+}
+```
+
+</details>
+
+### What is the execution order of multiple defers?
+
+<details>
+<summary>Click to expand</summary>
+
+The execution order is similar to a stack, first in, last out.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	defer func() {
+		fmt.Println(1)
+	}()
+
+	defer func() {
+		fmt.Println(2)
+	}()
+
+	defer func() {
+		fmt.Println(3)
+	}()
+}
+
+// Result:
+// 3
+// 2
+// 1
+
+```
+
+</details>
+
+### What is data overflow?
+
+<details>
+<summary>Click to expand</summary>
+
+When using numeric types, if the data reaches the maximum value, the next data will overflow, such as `uint` will start from 0 after overflow, `int` will become negative after overflow.
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	var n int8 = math.MaxInt8
+	var m uint8 = math.MaxUint8
+
+	n += 2
+	m += 1
+
+	fmt.Println(n) // -127
+	fmt.Println(m) // 0
+}
+```
+
+How to avoid?
+
+- Use uint for positive numbers first, the range is larger
+- Add judgment code to determine whether it overflows 
+
+</details>
+
+### Should function parameters use value or pointer?
+
+<details>
+<summary>Click to expand</summary>
+
+- Value transfer
+
+Generally speaking, value transfer can be used for common types. The advantage of value transfer is that modifications to the value within the function will not affect the original variable and will not cause concurrency problems. The disadvantage is that value transfer will copy a copy of the corresponding variable, which will occupy more memory. If the input structure is very large, it is not suitable to use value transfer.
+
+- Pointer and reference transfer
+
+The advantage of using pointer transfer is that it directly transfers the address of the variable, without the need for extra space. The disadvantage is that data modification during concurrent operations will affect the original data. Passing in a slice is actually passing the pointer of the slice to avoid repeated copying. If an array is passed in, it is value transfer, and a copy will be made.
+
+</details>

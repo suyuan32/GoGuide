@@ -388,4 +388,165 @@ func main() {
 </details>
 
 
-### 
+### `make` 和 `new` 有什么区别？
+
+<details>
+<summary>展开查看</summary>
+
+`new` 用于给任意的类型分配内存地址，并返回该类型的指针，且初始化值为零值。
+
+> `new` 并不是很常用
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	s := new(string)
+	n := new(int)
+
+	fmt.Println(s) // 0xc00008a030
+	fmt.Println(*s) // ""
+
+	fmt.Println(n) // 0xc00000a0d8
+	fmt.Println(*n) // 0
+}
+```
+
+`make` 主要用于 `slices` `map` `channel` 初始化
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	m := make(map[string]int, 10)
+
+	fmt.Println(m) // map[]
+
+}
+```
+
+</details>
+
+### 数组和切片有什么区别？
+
+<details>
+<summary>展开查看</summary>
+
+- 数组的长度是固定的，在创建的时候就已经确定，且不可改变。切片的长度是动态的，会根据添加的数据自动扩容。
+- 在函数参数传递时数据是值传递，切片是引用传递
+- 切片有容量 （capacity） 参数，数组没有
+
+</details>
+
+### 如果 `for range` 同时添加数据， `for range` 会无限执行吗？
+
+<details>
+<summary>展开查看</summary>
+
+不会，在执行 `for range` 的时候实际遍历的是变量的副本，所以改变遍历的变量是不会有营养的
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	n := []int{1, 2, 3}
+
+	for  _, v := range n {
+		n = append(n, v)
+	}
+
+	fmt.Println(n) // 结果： [1 2 3 1 2 3]
+}
+```
+
+</details>
+
+### 多个 defer 的执行顺序是什么？
+
+<details>
+<summary>展开查看</summary>
+
+执行的顺序类似堆栈，先进后出
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	defer func() {
+		fmt.Println(1)
+	}()
+
+	defer func() {
+		fmt.Println(2)
+	}()
+
+	defer func() {
+		fmt.Println(3)
+	}()
+}
+
+// 结果：
+// 3
+// 2
+// 1
+
+```
+
+</details>
+
+### 什么是数据溢出？
+
+<details>
+<summary>展开查看</summary>
+
+在使用数字类型时如果数据达到最大值，则接下来的数据将会溢出，如 `uint` 溢出后会从 0 开始， `int` 溢出后会变为负数。
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	var n int8 = math.MaxInt8
+	var m uint8 = math.MaxUint8
+
+	n += 2
+	m += 1
+
+	fmt.Println(n) // -127
+	fmt.Println(m) // 0
+}
+```
+
+如何避免？
+
+- 正数优先使用 uint, 范围更大
+- 添加判断代码判断是否溢出 
+
+</details>
+
+### 函数参数使用值还是指针？
+
+<details>
+<summary>展开查看</summary>
+
+- 值传递
+
+一般来说，对于常见的类型都可以使用值传递，值传递的优点是函数内对值的修改不会影响原始的变量，也不会出现并发问题。缺点是值传递会复制一份对应变量的副本，对内存占用会多一些，如果传入的结构体非常大，使用值传递就不太合适。
+
+- 指针和引用传递
+
+使用指针传递的好处是直接传递变量的地址，不需要额外的空间，缺点是并发操作时数据修改会影响到原始的数据。传入切片实际上就是传递切片的指针，避免重复拷贝，若传入数组则是值传递，会拷贝一份。
+
+</details>

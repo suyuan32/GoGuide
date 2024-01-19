@@ -213,3 +213,24 @@ num = &n
 ```
 
 </details>
+
+## 零值表
+
+| **类型**                        | **零值**                |
+| ------------------------------- | ----------------------- |
+| uint/uint8/uint16/uint32/uint64 | 0                       |
+| int/int8/int16/int32/int64      | 0                       |
+| float32/float64                 | 0                       |
+| complex64/complex128            | 0+0i                    |
+| bool                            | false                   |
+| uintptr                         | 0                       |
+| byte                            | 0                       |
+| rune                            | 0                       |
+| string                          | ""                      |
+| struct                          | 内部属性全部是其对应0值 |
+| interface                       | nil                     |
+| slice                           | nil                     |
+| map                             | nil                     |
+| chan                            | nil                     |
+| func                            | nil                     |
+| pointer                         | nil                     |
