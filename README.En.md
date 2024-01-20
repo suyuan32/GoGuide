@@ -24,9 +24,14 @@ Go Guide is an open-source Golang learning material knowledge base, mainly used 
 - [Data types](https://goguide.ryansu.tech/en/guide/concepts/golang/2-datatype.html)
 - [Operators](https://goguide.ryansu.tech/en/guide/concepts/golang/3-operator.html)
 - [Error handling](https://goguide.ryansu.tech/en/guide/concepts/golang/4-errorhanding.html)
+- [Map](https://goguide.ryansu.tech/guide/en/concepts/golang/5-map.html)
+- [Slices](https://goguide.ryansu.tech/en/guide/concepts/golang/6-slice.html)
+- [Channel](https://goguide.ryansu.tech/en/guide/concepts/golang/7-channel.html)
+- [Context](https://goguide.ryansu.tech/en/guide/concepts/golang/8-context.html)
 
 ## Interview Questions
 
 ### Golang
 
 - [Basic](https://goguide.ryansu.tech/en/guide/interview/golang/basic/1-basic.html)
+- [Medium](https://goguide.ryansu.tech/en/guide/interview/golang/basic/2-medium.html)

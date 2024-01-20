@@ -9,6 +9,9 @@ actions:
   - text: Guide
     link: ./guide/
     type: primary
+  - text: Github ✨
+    link: https://github.com/suyuan32/GoGuide
+    icon: mdi:github
 
 highlights:
   - header: 
