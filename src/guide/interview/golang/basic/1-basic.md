@@ -550,3 +550,72 @@ func main() {
 使用指针传递的好处是直接传递变量的地址，不需要额外的空间，缺点是并发操作时数据修改会影响到原始的数据。传入切片实际上就是传递切片的指针，避免重复拷贝，若传入数组则是值传递，会拷贝一份。
 
 </details>
+
+## Map
+
+### 未初始化的 Map 可以读取 key 吗？
+
+<details>
+<summary>展开查看</summary>
+
+可以的，未执行 `make` 初始化的 `map` 读取任何 `key` 都会返回当前类型的空值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var m map[int]int
+
+	fmt.Println(m[1])
+}
+
+// 结果：
+// 0
+```
+</details>
+
+### 如果对未初始化的 Map 赋值会怎么样？
+
+<details>
+<summary>展开查看</summary>
+
+会触发 `panic` 异常错误
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	m[1] = 1
+}
+
+// 结果：
+// panic: assignment to entry in nil map
+```
+
+</details>
+
+### 如果对未初始化的 Map 进行删除 key 的操作会发生什么？
+
+<details>
+<summary>展开查看</summary>
+
+早期如果对未初始化的 `map` 进行 `delete` 操作会报 `panic` 错误， 现在的版本对于未初始化的 `map` 进行 `delete` 是不会报错的。
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	delete(m, 1)
+}
+
+// 结果：
+// 
+```
+
+</details>

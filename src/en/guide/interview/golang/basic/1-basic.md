@@ -494,3 +494,73 @@ Generally speaking, value transfer can be used for common types. The advantage o
 The advantage of using pointer transfer is that it directly transfers the address of the variable, without the need for extra space. The disadvantage is that data modification during concurrent operations will affect the original data. Passing in a slice is actually passing the pointer of the slice to avoid repeated copying. If an array is passed in, it is value transfer, and a copy will be made.
 
 </details>
+
+
+## Map
+
+### Can an uninitialized Map read a key?
+
+<details>
+<summary>Click to expand</summary>
+
+Yes, an uninitialized `map` that hasn't undergone `make` initialization will return the zero value of the current type for any `key` read.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var m map[int]int
+
+	fmt.Println(m[1])
+}
+
+// Output:
+// 0
+```
+</details>
+
+### What happens if you assign a value to an uninitialized Map?
+
+<details>
+<summary>Click to expand</summary>
+
+It will trigger a `panic` exception error.
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	m[1] = 1
+}
+
+// Output:
+// panic: assignment to entry in nil map
+```
+
+</details>
+
+### What happens if you delete a key from an uninitialized Map?
+
+<details>
+<summary>Click to expand</summary>
+
+In earlier versions, performing a `delete` operation on an uninitialized `map` would throw a `panic` error. In current versions, performing a `delete` operation on an uninitialized `map` will not cause an error.
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	delete(m, 1)
+}
+
+// Output:
+// 
+```
+
+</details>
