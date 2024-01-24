@@ -30,6 +30,12 @@ export const enSidebar = sidebar({
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
               children: "structure"
+            },
+            {
+              text: "Computer Network",
+              icon: "zondicons:network",
+              prefix: "network/",
+              children: "structure"
             }
           ]
         },    

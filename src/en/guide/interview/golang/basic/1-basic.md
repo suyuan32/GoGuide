@@ -391,7 +391,7 @@ func main() {
 <details>
 <summary>Click to expand</summary>
 
-No, when executing `for range`, the actual traversal is a copy of the variable, so changing the traversed variable is not nutritious.
+No, when executing `for range`, what is actually traversed is a copy of the variable, so changing the traversed variable will not have an impact.
 
 ```go
 package main

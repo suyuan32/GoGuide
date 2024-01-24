@@ -30,6 +30,12 @@ export const zhSidebar = sidebar({
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
               children: "structure"
+            },
+            {
+              text: "计算机网络",
+              icon: "zondicons:network",
+              prefix: "network/",
+              children: "structure"
             }
           ]
         },

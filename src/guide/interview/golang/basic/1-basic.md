@@ -447,7 +447,7 @@ func main() {
 <details>
 <summary>展开查看</summary>
 
-不会，在执行 `for range` 的时候实际遍历的是变量的副本，所以改变遍历的变量是不会有营养的
+不会，在执行 `for range` 的时候实际遍历的是变量的副本，所以改变遍历的变量是不会有影响的
 
 ```go
 package main
