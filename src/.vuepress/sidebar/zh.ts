@@ -17,6 +17,12 @@ export const zhSidebar = sidebar({
               icon: "fa6-brands:golang",
               prefix: "golang/",
               children: "structure",
+            },
+            {
+              text: "计算机网络",
+              icon: "zondicons:network",
+              prefix: "network/",
+              children: "structure"
             }
           ]
         },
@@ -29,12 +35,6 @@ export const zhSidebar = sidebar({
               text: "Golang",
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
-              children: "structure"
-            },
-            {
-              text: "计算机网络",
-              icon: "zondicons:network",
-              prefix: "network/",
               children: "structure"
             }
           ]
