@@ -30,10 +30,10 @@ Go Guide is an open-source Golang learning material knowledge base, mainly used 
 - [Context](https://goguide.ryansu.tech/en/guide/concepts/golang/8-context.html)
 
 ### Computer Network
-- [Basic](https://goguide.ryansu.tech/guide/concepts/network/network.html)
+- [Basic](https://goguide.ryansu.tech/en/guide/concepts/network/network.html)
 
 ### Database
-- [Basic](https://goguide.ryansu.tech/guide/concepts/database/1-database-basic.html)
+- [Basic](https://goguide.ryansu.tech/en/guide/concepts/database/1-database-basic.html)
 
 ## Interview Questions
 
