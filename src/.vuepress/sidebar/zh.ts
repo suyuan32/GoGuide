@@ -16,12 +16,21 @@ export const zhSidebar = sidebar({
               text: "Golang",
               icon: "fa6-brands:golang",
               prefix: "golang/",
+              collapsible: true,
               children: "structure",
             },
             {
               text: "计算机网络",
               icon: "zondicons:network",
               prefix: "network/",
+              collapsible: true,
+              children: "structure"
+            },
+            {
+              text: "数据库",
+              icon: "material-symbols:database-outline",
+              prefix: "database/",
+              collapsible: true,
               children: "structure"
             }
           ]
@@ -35,6 +44,7 @@ export const zhSidebar = sidebar({
               text: "Golang",
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
+              collapsible: true,
               children: "structure"
             }
           ]
