@@ -23,6 +23,13 @@ export const enSidebar = sidebar({
               icon: "zondicons:network",
               prefix: "network/",
               children: "structure"
+            },
+            {
+              text: "Database",
+              icon: "material-symbols:database-outline",
+              prefix: "database/",
+              collapsible: true,
+              children: "structure"
             }
           ]
         },
