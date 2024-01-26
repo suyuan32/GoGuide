@@ -29,6 +29,12 @@ Go Guide 是一个开源的 Golang 学习资料知识库，主要用于分享 Go
 - [信道](https://goguide.ryansu.tech/guide/concepts/golang/7-channel.html)
 - [Context](https://goguide.ryansu.tech/guide/concepts/golang/8-context.html)
 
+### 计算机网络
+- [计算机网络基础](https://goguide.ryansu.tech/guide/concepts/network/network.html)
+
+### 数据库
+- [数据库基础](https://goguide.ryansu.tech/guide/concepts/database/1-database-basic.html)
+
 ## 面试题
 
 ### Golang
