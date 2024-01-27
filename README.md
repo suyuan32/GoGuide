@@ -41,3 +41,11 @@ Go Guide 是一个开源的 Golang 学习资料知识库，主要用于分享 Go
 
 - [基础](https://goguide.ryansu.tech/guide/interview/golang/basic/1-basic.html)
 - [进阶](https://goguide.ryansu.tech/guide/interview/golang/basic/2-medium.html)
+
+### 本地查看
+
+```shell
+pnpm install
+
+pnpm docs:dev
+```

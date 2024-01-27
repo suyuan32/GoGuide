@@ -41,3 +41,11 @@ Go Guide is an open-source Golang learning material knowledge base, mainly used 
 
 - [Basic](https://goguide.ryansu.tech/en/guide/interview/golang/basic/1-basic.html)
 - [Medium](https://goguide.ryansu.tech/en/guide/interview/golang/basic/2-medium.html)
+
+### Local Preview
+
+```shell
+pnpm install
+
+pnpm docs:dev
+```
