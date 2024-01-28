@@ -21,8 +21,7 @@ golang 提供了多种创建 `error` 的方法
 
 我们可以使用 `errors.New()`  `fmt.Errorf()` 来创建错误
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -44,14 +43,13 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## errors.Join
 
 在 go 1.20 提供了 `errors.Join` 方法将多个 `error` 组合成一个数组
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -81,14 +79,13 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ## errors.Is
 
 使用 `errors.Is()` 方法可以判断当前 `error` 是否包含目标类型的 `error`
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -124,14 +121,13 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ## errors.As
 
 使用 `errors.As()` 方法可以将 error 中第一个符合目标类型的错误赋值到目标对象
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -168,4 +164,4 @@ func main() {
 }
 ```
 
-</details>
+:::

@@ -49,8 +49,7 @@ fmt.Println(data[2:4])
 
 使用 `len()` 获取切片长度， 使用 `cap()` 获取切片容量
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -68,14 +67,13 @@ func main() {
 // [0 0 0 0 0] 5 9
 ```
 
-</details>
+:::
 
 ## 追加数据
 
 使用 `append()` 函数追加数据
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -103,14 +101,13 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## 克隆切片
 
 我们知道切片属于引用类型，如果将一个切片赋值给另一个变量，实际上共用一个内存地址的数据，如果想创建两个相同数据的切片，可以使用 `copy()` 方法
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -140,4 +137,4 @@ func main() {
 // [0 1 2 3 4 5]
 ```
 
-</details>
+:::

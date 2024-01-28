@@ -47,8 +47,7 @@ Complex numbers contain imaginary and real numbers, with the real part being a f
 | 32-bit float + imaginary | `complex64`  |
 | 64-bit float + imaginary | `complex128` |
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Initialize a complex number
@@ -58,7 +57,7 @@ var complexData complex64 = complex(5, 3) // Equals: 5 + 3i
 complexData2 := 5 + 3i
 ```
 
-</details>
+:::
 
 ## Strings (string)
 
@@ -66,8 +65,7 @@ Strings are composed of a sequence of characters, and the type name is `string`.
 
 **Once a string is created, it cannot be modified.**
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -83,14 +81,13 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ## Booleans (bool)
 
 The boolean type values are `true` or `false`, and the type name is `bool`.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 var isNumber bool
@@ -99,7 +96,7 @@ isNumber = true
 isNumber = false
 ```
 
-</details>
+:::
 
 ## Arrays (array)
 
@@ -107,21 +104,19 @@ Arrays are composed of a series of data, which can be accessed by index.
 
 **The capacity of an array cannot be modified once created.**
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 data := [5]int{1, 2, 3, 4, 5}
 ```
 
-</details>
+:::
 
 ## Slices (slices)
 
 Slices are dynamic arrays that can automatically adjust their capacity size based on the data.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -143,7 +138,7 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## Map (map)
 
@@ -155,8 +150,7 @@ map[KeyType]ValueType
 ```
 `KeyType` is the data type of the key, and `ValueType` is the data type of the value.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Declare a map
@@ -172,14 +166,13 @@ m["path"] = 66
 fmt.Println(m["path"])
 ```
 
-</details>
+:::
 
 ## Structures (struct)
 
 Structures are composed of a series of custom fields, which can be accessed using `.`.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 type Animal struct {
@@ -193,14 +186,13 @@ a := Animal{
 fmt.Println(a.Name)
 ```
 
-</details>
+:::
 
 ## Pointers (pointer)
 
 Pointers store the memory address of a variable. Use `*` in front of a variable to define it as a pointer, and `&` to get the variable's address. Pointers allow you to modify data outside of a function within the function.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 var num *int
@@ -210,7 +202,7 @@ n := 10
 num = &n
 ```
 
-</details>
+:::
 
 ## Zero Value Table
 

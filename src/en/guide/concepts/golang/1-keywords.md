@@ -20,8 +20,7 @@ Golang has 25 reserved keywords that cannot be used as program identifiers.
 
 `const` is used to declare constants, which once declared cannot be changed, and must specify an initial value when declaring a constant.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 const identifier T = value  // T is the data type, which can be omitted, and the compiler will infer it.
@@ -38,14 +37,13 @@ const (
     c
 ) // iota
 ```
-</details>
+:::
 
 ### **func**
 
 `func` is used to declare functions, supports multiple return values, and does not support default parameters.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // p is the parameter, T is the type
@@ -54,7 +52,7 @@ func Test(p T) (T1, T2) {}
 func Test(p T, p1 T1, list ...T3) (T4, T5) {}  // variadic parameters
 ```
 
-</details>
+:::
 
 ### **import**
 
@@ -62,8 +60,7 @@ func Test(p T, p1 T1, list ...T3) (T4, T5) {}  // variadic parameters
 
 `import` supports single-line and multi-line imports.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 import "flag" // single import
@@ -73,7 +70,7 @@ import (
     "fmt"
 ) // multiple imports
 ```
-</details>
+:::
 
 We can also use `.`, `_`, and aliases to modify imported packages.
 
@@ -93,8 +90,7 @@ We can also use `_` to modify imported packages, which will only execute the pac
 
 `type` is used to define variable types.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Define an interface
@@ -113,14 +109,13 @@ type Num = int32 // Only define an alias
 
 ```
 
-</details>
+:::
 
 ### **var**
 
 `var` is used to declare public or private variables.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 var Name T  // public variable
@@ -138,7 +133,7 @@ var (
 )
 ```
 
-</details>
+:::
 
 ## Composite Types
 
@@ -146,8 +141,7 @@ var (
 
 `chan` (Channel) is used to declare channels.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Channel for sending and receiving data of type T
@@ -163,14 +157,13 @@ ch := make(chan T)       // unbuffered channel
 ch := make(chan T, 20)   // buffered channel
 ```
 
-</details>
+:::
 
 ### **interface**
 
 `interface` is used to declare interfaces.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 type File interface {
@@ -180,14 +173,13 @@ type File interface {
 }
 ```
 
-</details>
+:::
 
 ### **map**
 
 `map` is used to declare collections, consisting of unordered key-value pairs, with an underlying `hash map`. Although `map` will automatically expand, it is recommended to configure the capacity at initialization.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 m := make(map[string]string)  // empty map
@@ -195,14 +187,13 @@ m := make(map[string]string)  // empty map
 m := make(map[string]string, 10) // map with an initial capacity of 10
 ```
 
-</details>
+:::
 
 ### **struct**
 
 `struct` is used to declare structures.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 type Person struct {
@@ -210,7 +201,7 @@ type Person struct {
 }
 ```
 
-</details>
+:::
 
 Here is the translation into English:
 
@@ -220,8 +211,7 @@ Here is the translation into English:
 
 `if` `else` is used for conditional judgments and can be nested.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 if a > 0 {
@@ -231,14 +221,13 @@ if a > 0 {
 }
 ```
 
-</details>
+:::
 
 ### **switch fallthrough**
 
 `switch` is used to perform different actions based on different conditions. By default, each `case` comes with a `break`, and after executing one `case`, it will automatically exit. If you want to continue executing the following statements, you need to use `fallthrough`.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 a := "2"
@@ -296,14 +285,13 @@ func main() {
 // Saturday
 ```
 
-</details>
+:::
 
 ### **for break continue range**
 
 `for` is used to loop actions, using `break` to interrupt the current `for` loop, and `continue` to skip the remaining statements of the current loop and continue with the next round.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Single condition
@@ -342,14 +330,13 @@ for i, v :=range array{
 
 ```
 
-</details>
+:::
 
 ### **goto**
 
 `goto` can jump to a specified location to continue executing actions.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -380,14 +367,13 @@ end:
 
 ```
 
-</details>
+:::
 
 ### **select**
 
 `select` allows `goroutine` to wait for multiple communication operations. `select` will block until one `case` receives information. If multiple channels receive data at the same time, a random `case` will be executed.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -421,7 +407,7 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## Function Modifiers
 
@@ -429,8 +415,7 @@ func main() {
 
 `return` is used to terminate the execution of a function and return zero or more return values. `defer` is used to perform actions before the function's `return` or after it has finished executing.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -474,14 +459,13 @@ func main() {
 // 7
 ```
 
-</details>
+:::
 
 ### **go**
 
 `go` is used to create a coroutine (goroutine) and perform actions in the background of the program.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -510,4 +494,4 @@ func main() {
 
 ```
 
-</details>
+:::

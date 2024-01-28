@@ -13,8 +13,7 @@ map[KeyType]ValueType
 ```
 `KeyType` is the data type of the key, and `ValueType` is the data type of the `value`.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 // Declare a map
@@ -33,14 +32,13 @@ m["path"] = 66
 fmt.Println(m["path"])
 ```
 
-</details>
+:::
 
 ## Traversing a Map
 
 Use `range` to traverse a map.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -97,14 +95,13 @@ func main() {
 // Value: third value
 ```
 
-</details>
+:::
 
 ## Deleting Key-Value Pairs
 
 To delete a key-value pair in a map, use the `delete()` method.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -137,13 +134,12 @@ func main() {
 
 ```
 
-</details>
+:::
 
 
 ## Check if a key exists
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -174,7 +170,7 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 
 ## Get the length of a Map

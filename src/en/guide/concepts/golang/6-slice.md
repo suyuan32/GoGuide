@@ -49,8 +49,7 @@ fmt.Println(data[2:4])
 
 Use `len()` to get the length of the slice and `cap()` to get the capacity of the slice.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -68,14 +67,13 @@ func main() {
 // [0 0 0 0 0] 5 9
 ```
 
-</details>
+:::
 
 ## Appending Data
 
 Use the `append()` function to append data.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -103,14 +101,13 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## Cloning Slices
 
 We know that slices are reference types. If you assign a slice to another variable, the data sharing the same memory address is actually shared. If you want to create two slices with the same data, you can use the `copy()` method.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -140,4 +137,4 @@ func main() {
 // [0 1 2 3 4 5]
 ```
 
-</details>
+:::

@@ -21,8 +21,7 @@ Golang provides several ways to create an `error`.
 
 We can use `errors.New()` or `fmt.Errorf()` to create errors.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -44,14 +43,13 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## errors.Join
 
 In Go 1.20, `errors.Join` was introduced to combine multiple `error`s into one array.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -81,14 +79,13 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ## errors.Is
 
 We can use `errors.Is()` to determine whether the current `error` contains the target type of `error`.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -124,14 +121,13 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ## errors.As
 
 We can use `errors.As()` to assign the first error in the error that matches the target type to the target object.
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```go
 package main
@@ -168,4 +164,4 @@ func main() {
 }
 ```
 
-</details>
+:::

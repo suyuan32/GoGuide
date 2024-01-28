@@ -13,8 +13,7 @@ map[KeyType]ValueType
 ```
 `KeyType` 为 key 的数据类型 , `ValueType` 为 `value` 的数据类型
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 声明 map
@@ -33,14 +32,13 @@ m["path"] = 66
 fmt.Println(m["path"])
 ```
 
-</details>
+:::
 
 ## 遍历 Map
 
 使用 range 遍历 map
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -98,14 +96,13 @@ func main() {
 // Value: third value
 ```
 
-</details>
+:::
 
 ## 删除键值
 
 在字典中删除键值需要使用 `delete()` 方法
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -138,13 +135,12 @@ func main() {
 
 ```
 
-</details>
+:::
 
 
 ## 判断 key 是否存在
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -175,7 +171,7 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 
 ## 获取 Map 长度

@@ -24,8 +24,7 @@ golang 有 25 个保留的关键字，这些关键字不能用作程序标识符
 
 `const` 用于声明常量，常量一经声明就不能被更改，声明常量必须指定初始值。
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 const identifier T = value  // T 为数据类型，可以省略，编译器会自己推断。
@@ -42,15 +41,14 @@ const (
     c
 ) // iota
 ```
-</details>
+:::
 
 ### **func**
 
 `func` 用于声明函数，支持多个返回值，不支持默认参数。
 
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // p 为参数， T 为类型
@@ -59,7 +57,7 @@ func Test(p T) (T1, T2) {}
 func Test (p T, p1, T1, list ...T3) (T4, T5) {}  // 不定参数
 ```
 
-</details>
+:::
 
 ### **import**
 
@@ -67,8 +65,7 @@ func Test (p T, p1, T1, list ...T3) (T4, T5) {}  // 不定参数
 
 `import` 支持单行和多行导入。
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 import "flag" // 单个导入
@@ -78,7 +75,7 @@ import (
 	"fmt"
 ) // 多个导入
 ```
-</details>
+:::
 
 我们还可以使用  `.`, `_` 和别名修饰导入的包。
 
@@ -98,8 +95,7 @@ import (
 
 `type` 用于定义变量类型
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 定义接口
@@ -118,14 +114,13 @@ type Num = int32 // 仅定义别名
 
 ```
 
-</details>
+:::
 
 ### **var**
 
 `var` 用于声明公开或者私有变量
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 var Name T  // 公开变量
@@ -143,7 +138,7 @@ var (
 )
 ```
 
-</details>
+:::
 
 ## 复合类型
 
@@ -151,8 +146,7 @@ var (
 
 `chan` (Channel) 用于声明信道。
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 用于发送和接收 T 类型的数据的信道
@@ -168,14 +162,13 @@ ch := make(chan T) 		// 无缓冲信道
 ch := make(chan T, 20)	// 带缓冲信道
 ```
 
-</details>
+:::
 
 ### **interface**
 
 `interface` 用于声明接口
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 type File interface {
@@ -185,14 +178,13 @@ type File interface {
 }
 ```
 
-</details>
+:::
 
 ### **map**
 
 `map` 用于声明集合，由无序的键值对组成，底层为 `hash map`. 虽然 `map` 会自动扩容，但是建议在初始化的时候就配置容量。
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 m := make(map[string]string)  // 空的 map
@@ -200,14 +192,13 @@ m := make(map[string]string)  // 空的 map
 m := make(map[string]string, 10) // 初始容量为 10 的 map
 ```
 
-</details>
+:::
 
 ### **struct**
 
 `struct` 用于声明结构体
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 type Person struct {
@@ -215,7 +206,7 @@ type Person struct {
 }
 ```
 
-</details>
+:::
 
 ## 流程控制
 
@@ -223,8 +214,7 @@ type Person struct {
 
 `if` `else` 用于条件判断，可嵌套使用
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 if a > 0 {
@@ -234,14 +224,13 @@ if a > 0 {
 }
 ```
 
-</details>
+:::
 
 ### **switch fallthrough**
 
 `switch` 用于根据不同条件执行不同的动作，默认每个 `case` 都带有 `break`, 执行完一个 `case` 会自动跳出，若希望继续执行下面的语句，需搭配 `fallthrough`
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 a := "2"
@@ -300,14 +289,13 @@ func main() {
 // Saturday
 ```
 
-</details>
+:::
 
 ### **for break continue range**
 
 `for` 用于循环执行动作，使用 `break` 中断当前 `for` 循环， `continue` 用于跳过当前循环的剩余语句，继续执行下一轮循环
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 单个条件
@@ -346,14 +334,13 @@ for i, v :=range array{
 
 ```
 
-</details>
+:::
 
 ### **goto**
 
 `goto` 可以跳到指定位置继续执行动作
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -384,14 +371,13 @@ end:
 
 ```
 
-</details>
+:::
 
 ### **select**
 
 `select` 让 `goroutine` 等待多个通信操作，`select` 会阻塞直到一个 `case` 接收到信息，如果同时多个通道收到数据，则会随机执行一个 `case`
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -425,7 +411,7 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## 功能修饰
 
@@ -433,8 +419,7 @@ func main() {
 
 `return` 用于终止函数的执行并返回0个或多个返回值， `defer` 用于函数 `return` 之前或执行完之后执行动作
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -478,14 +463,13 @@ func main() {
 // 7
 ```
 
-</details>
+:::
 
 ### **go**
 
 `go` 用于创建协程（goroutine）, 在程序后台执行动作
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -514,4 +498,4 @@ func main() {
 
 ```
 
-</details>
+:::

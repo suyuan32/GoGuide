@@ -48,8 +48,7 @@ Golang 中的整数类型：
 | 32 位浮点数 + 虚数 | `complex64`  |
 | 64 位浮点数 + 虚数 | `complex128` |
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 初始化一个复数
@@ -59,7 +58,7 @@ var complexData complex64 = complex(5, 3) // 等于： 5 + 3i
 complexData2 := 5 + 3i
 ```
 
-</details>
+:::
 
 ## 字符串 (string)
 
@@ -67,8 +66,7 @@ complexData2 := 5 + 3i
 
 **字符串一旦创建，无法修改**
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -84,15 +82,14 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 
 ## 布尔类型 (bool)
 
 布尔类型的值为 `true` 或 `false`, 类型名称为 `bool`
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 var isNumber bool
@@ -101,7 +98,7 @@ isNumber = true
 isNumber = false
 ```
 
-</details>
+:::
 
 ## 数组 (array)
 
@@ -109,21 +106,19 @@ isNumber = false
 
 **数组的容量一经创建就无法修改**
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 data := [5]int{1, 2, 3, 4, 5}
 ```
 
-</details>
+:::
 
 ## 切片 (slices)
 
 切片是动态的数组，可根据数据自动调整容量大小
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 package main
@@ -145,7 +140,7 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ## Map (map)
 
@@ -157,8 +152,7 @@ map[KeyType]ValueType
 ```
 `KeyType` 为 key 的数据类型 , `ValueType` 为 `value` 的数据类型
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 // 声明 map
@@ -174,14 +168,13 @@ m["path"] = 66
 fmt.Println(m["path"])
 ```
 
-</details>
+:::
 
 ## 结构体 (struct)
 
 结构体由一系列自定义的字段组成，可通过 `.` 获取字段内容
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 type Animal struct {
@@ -195,14 +188,13 @@ a := Animal{
 fmt.Println(a.Name)
 ```
 
-</details>
+:::
 
 ## 指针 (pointer)
 
 指针存储的是变量的内存地址，在变量前使用 `*` 定义为指针，使用 `&` 获取变量地址，通过指针可以在函数中修改函数外的数据
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```go
 var num *int
@@ -212,7 +204,7 @@ n := 10
 num = &n
 ```
 
-</details>
+:::
 
 ## 零值表
 
