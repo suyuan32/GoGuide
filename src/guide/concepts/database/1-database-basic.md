@@ -21,8 +21,7 @@ title: "数据库基础"
 - 主键不能为空，唯一键可以为空
 :::
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 假设有两张表
 
@@ -39,7 +38,7 @@ title: "数据库基础"
 - 候选键： 以 `student` 表为例： `student.id` `student.identify_card`
 - 外键： `student.teacher_id`
 
-</details>
+:::
 
 ## 表连接
 
@@ -63,10 +62,7 @@ title: "数据库基础"
 
 ::: info 示例表
 
-<details>
-<summary>示例表</summary>
-
-### 示例表
+::: details 示例表
 
 接下来的查询都是围绕该示例表
 
@@ -98,8 +94,6 @@ title: "数据库基础"
 | 12  | Justin Rogers  | 13  | 8         |
 
 
-</details>
-
 :::
 
 ::: warning
@@ -120,8 +114,7 @@ select * from a join b;
 select * from a inner join b;
 ```
 
-<details>
-<summary>例子</summary>
+::: details 例子
 
 ```sql
 select * from student s inner join course c on s.course_id=c.id;
@@ -141,7 +134,7 @@ select * from student s inner join course c on s.course_id=c.id;
 
 **可以看到只有满足 `s.course_id=c.id` 的数据列被返回了**
 
-</details>
+:::
 
 ### 外连接 (outer join)
 

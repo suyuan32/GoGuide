@@ -5,8 +5,7 @@ title: "Medium"
 
 ### Have you used `context`? What are the use cases for `context`?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 | Scenario            | Introduction                                                                                                       |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -14,33 +13,30 @@ title: "Medium"
 | Terminate coroutine | By using the `cancel()` method, coroutines can be easily terminated                                                |
 | Data transfer       | We can write data into `context` to transfer data between different coroutines                                     |
 
-</details>
+:::
 
 ### Is `channel` thread-safe?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 `channel` is thread-safe, the reason is that `channel` has implemented a lock mechanism internally,
 
-</details>
+:::
 
 
 ### Is the traversal of a Map using range ordered or unordered?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 **Unordered**
 
 Internally, Map uses a hash algorithm to place elements. When it automatically expands, it recalculates the hash values, so the addresses of the elements keep changing. To prevent users from thinking that the arrangement of Map elements is ordered, it directly returns in a random order, so the traversal is unordered.
 
-</details>
+:::
 
 ### Is Map concurrency-safe?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 **Map cannot guarantee concurrency safety**
 
@@ -49,12 +45,11 @@ To ensure concurrency safety, use the following methods:
 - Manually add read-write locks
 - Use `sync.Map`
 
-</details>
+:::
 
 ### Will the memory of a key be released after the key is deleted from the Map?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 If the value of the map is 
 
@@ -70,4 +65,4 @@ If the value of the map is
 [Code combat analysis](https://articles.zsxq.com/id_4w1a11i6xrw0.html)
 :::
 
-</details>
+:::

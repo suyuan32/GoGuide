@@ -7,7 +7,7 @@ title: "基础"
 ## 指针
 
 ### 什么是指针和指针变量?
-<details> <summary>展开查看</summary>
+::: details 答案
 普通变量存储数据，而指针变量存储的是数据的地址。
 
 - 学习指针，主要有两个运算符号`&`和`*`。
@@ -24,10 +24,10 @@ fmt.Println(ptr) //输出: 例如：0xc000086020
 tamp := *ptr
 fmt.Println(tamp) //输出: 99
 ```
-</details>
+:::
 
 ### 为什么使用指针？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 **意义一：容易编码**
 
@@ -41,12 +41,11 @@ fmt.Println(tamp) //输出: 99
 指针可直接访问和修改内存中的数据，通过指针，我们可以在运行时动态地分配内存，以满足程序的需求，并在不需要时释放内存，避免内存泄漏。
 
 指针可在程序运行时动态地分配内存。通过动态内存分配，我们可以根据需要分配和释放内存，从而提高程序的灵活性和效率。
-</details>
+:::
 
 ### 哪些对象可以获取地址，哪些不行？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 可以使用 `&` 获取内存地址的对象：
 
@@ -65,13 +64,13 @@ fmt.Println(tamp) //输出: 99
 - map 非指针元素
 - 数组字面量
 
-</details>
+:::
 
 
 ## 字面量
 
 ### 字面量是什么意思？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - 下面这些基本类型赋值的文本，就是基本类型字面量。
 
@@ -95,10 +94,10 @@ n := 10 // 10 就是字面量
 ```
 "hello，world"   "123"
 ```
-</details>
+:::
 
 ###  什么是有类型常量和无类型常量？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - Golang 中，常量分为有类型常量和无类型常量。
 
@@ -154,10 +153,10 @@ func main() {
 //出错： cannot use A (type int8) as type int16 in assignment
 }
 ```
-</details>
+:::
 
 ###  不同字面量可能同值吗？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - 一个值可存在多种字面量表示，如下十进制的数值 21，可由三种字面量表示
 
@@ -174,10 +173,10 @@ func main() {
 	fmt.Println(21 == 0b0001 0101)  
 }// 由运行结果得出他们相等
 ```
-</details>
+:::
 
 ###  字面量和变量的区别是什么？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - 字面量，就是未命名的常量，跟常量一样，是不可寻址的。
 
@@ -208,10 +207,10 @@ func main() {
 	fmt.Println(&t)
 }
 ```
-</details>
+:::
 
 ###  什么是组合字面量？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - 组合字面量就是把对象的定义和初始化放在了一起，进一步说，组合字面量是为结构体、数组、切片和map构造值，并且每次都会创建新值。它们由字面量的类型后紧跟大括号及元素列表。每个元素前面可以选择性的带一个相关key。
 
@@ -269,12 +268,12 @@ colours := [3]string{"black", "red", "white"}
 s := []string{"red", "black"} 
 //会自动补上切片的容量和长度
 ```
-</details>
+:::
 
 
 ## 其他
 ###   Go 中的 `rune` 和 `byte` 有什么区别？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 在 Go 语言中，`byte` 和 `rune` 都是用于表示字符的类型，但它们之间有一些区别：
 
@@ -304,11 +303,11 @@ fmt.Printf("a 占用 %d 个字节数\nb 占用 %d 个字节数", unsafe.Sizeof(a
 #### 表示的字符范围不同：
 由于 byte 类型能表示的值是有限的，只有 2^8=256 个。所以想表示中文只能使用 rune 类型。
 
-</details>
+:::
 
 
 ###  Golang中的深拷贝和浅拷贝是什么？
-<details> <summary>展开查看</summary>
+::: details 答案
 
 - 什么是拷贝？
 
@@ -385,13 +384,12 @@ func main() {
 [7 8 9]
 ```
 
-</details>
+:::
 
 
 ### `make` 和 `new` 有什么区别？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 `new` 用于给任意的类型分配内存地址，并返回该类型的指针，且初始化值为零值。
 
@@ -429,23 +427,21 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ### 数组和切片有什么区别？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 - 数组的长度是固定的，在创建的时候就已经确定，且不可改变。切片的长度是动态的，会根据添加的数据自动扩容。
 - 在函数参数传递时数据是值传递，切片是引用传递
 - 切片有容量 （capacity） 参数，数组没有
 
-</details>
+:::
 
 ### 如果 `for range` 同时添加数据， `for range` 会无限执行吗？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 不会，在执行 `for range` 的时候实际遍历的是变量的副本，所以改变遍历的变量是不会有影响的
 
@@ -465,12 +461,11 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ### 多个 defer 的执行顺序是什么？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 执行的顺序类似堆栈，先进后出
 
@@ -500,12 +495,11 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ### 什么是数据溢出？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 在使用数字类型时如果数据达到最大值，则接下来的数据将会溢出，如 `uint` 溢出后会从 0 开始， `int` 溢出后会变为负数。
 
@@ -534,12 +528,11 @@ func main() {
 - 正数优先使用 uint, 范围更大
 - 添加判断代码判断是否溢出 
 
-</details>
+:::
 
 ### 函数参数使用值还是指针？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 - 值传递
 
@@ -549,14 +542,13 @@ func main() {
 
 使用指针传递的好处是直接传递变量的地址，不需要额外的空间，缺点是并发操作时数据修改会影响到原始的数据。传入切片实际上就是传递切片的指针，避免重复拷贝，若传入数组则是值传递，会拷贝一份。
 
-</details>
+:::
 
 ## Map
 
 ### 未初始化的 Map 可以读取 key 吗？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 可以的，未执行 `make` 初始化的 `map` 读取任何 `key` 都会返回当前类型的空值
 
@@ -574,12 +566,11 @@ func main() {
 // 结果：
 // 0
 ```
-</details>
+:::
 
 ### 如果对未初始化的 Map 赋值会怎么样？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 会触发 `panic` 异常错误
 
@@ -596,12 +587,11 @@ func main() {
 // panic: assignment to entry in nil map
 ```
 
-</details>
+:::
 
 ### 如果对未初始化的 Map 进行删除 key 的操作会发生什么？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 早期如果对未初始化的 `map` 进行 `delete` 操作会报 `panic` 错误， 现在的版本对于未初始化的 `map` 进行 `delete` 是不会报错的。
 
@@ -618,4 +608,4 @@ func main() {
 // 
 ```
 
-</details>
+:::

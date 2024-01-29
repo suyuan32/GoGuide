@@ -21,8 +21,7 @@ The difference between the primary key and the unique key:
 - The primary key cannot be null, the unique key can be null
 :::
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 Assume there are two tables
 
@@ -39,7 +38,7 @@ Assume there are two tables
 - Candidate Key: For example, in the `student` table: `student.id` `student.identify_card`
 - Foreign Key: `student.teacher_id`
 
-</details>
+:::
 
 ## Table Join
 
@@ -61,10 +60,7 @@ For example, `X={a,b}` `Y={1,2}` then the Cartesian product of X and Y is
 
 ::: info Sample Table
 
-<details>
-<summary>Sample Table</summary>
-
-### Sample Table
+::: details Sample Table
 
 The following queries are all around this sample table:
 
@@ -96,8 +92,6 @@ The following queries are all around this sample table:
 | 12  | Justin Rogers  | 13  | 8         |
 
 
-</details>
-
 :::
 
 ::: warning
@@ -118,8 +112,7 @@ select * from a join b;
 select * from a inner join b;
 ```
 
-<details>
-<summary>Example</summary>
+::: details Example
 
 ```sql
 select * from student s inner join course c on s.course_id=c.id;
@@ -139,7 +132,7 @@ Result
 
 **You can see that only the data columns that satisfy `s.course_id=c.id` are returned**
 
-</details>
+:::
 
 ### Outer Join
 

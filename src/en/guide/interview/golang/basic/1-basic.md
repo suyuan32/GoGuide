@@ -6,7 +6,7 @@ title: "Basic"
 ## Pointer
 
 ### What is a pointer and a pointer variable?
-<details> <summary>Click to expand</summary>
+::: details Answer
 Ordinary variables store data, while pointer variables store the address of the data.
 
 - Learning about pointers mainly involves two operators `&` and `*`.
@@ -28,10 +28,10 @@ fmt.Println(ptr) //output: for example: 0xc000086020
 tamp := *ptr
 fmt.Println(tamp) //output: 99
 ```
-</details>
+:::
 
 ### Why use pointers?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 **Significance One: Easy Coding**
 
@@ -45,12 +45,11 @@ Pointers can pass references of data between functions, instead of copying the e
 Pointers can directly access and modify data in memory. Through pointers, we can dynamically allocate memory at runtime to meet the needs of the program, and release memory when it is not needed, avoiding memory leaks.
 
 Pointers can dynamically allocate memory during program execution. Through dynamic memory allocation, we can allocate and release memory as needed, thereby improving the flexibility and efficiency of the program.
-</details>
+:::
 
 ### Which objects can be addressed and which cannot?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 The following objects can be addressed using `&` to obtain their memory addresses:
 
@@ -69,12 +68,12 @@ The following objects cannot be addressed:
 - Non-pointer elements of maps
 - Array literals
 
-</details>
+:::
 
 ## Literal
 
 ### What does literal mean?
-<details> <summary>Click to expand</summary>
+::: details Answer
 - The text of these basic type values below is a basic type literal.
 
 | Basic Type   | Collection                                                                               |
@@ -100,10 +99,10 @@ n := 10 // 10 is the literal value
 ```
 "hello，world"   "123"
 ```
-</details>
+:::
 
 ### Can different literals have the same value?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 - A value can be represented by multiple literals. For example, the decimal value 21 can be represented by three different literals
 
@@ -120,10 +119,10 @@ func main() {
 	fmt.Println(21 == 0b0001 0101)  
 }// The result of the run shows that they are equal
 ```
-</details>
+:::
 
 ### What is the difference between a literal and a variable?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 - A literal is an unnamed constant, just like a constant, it is not addressable.
 
@@ -154,10 +153,10 @@ func main() {
 	fmt.Println(&t)
 }
 ```
-</details>
+:::
 
 ### What is a composite literal?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 - A composite literal is a way to define and initialize an object together. In other words, a composite literal is used to construct values for structures, arrays, slices, and maps, and each time a new value is created. They are followed by the type of the literal, curly braces, and a list of elements. Each element can optionally be preceded by a related key.
 
@@ -214,12 +213,12 @@ colours := [3]string{"black", "red", "white"}
 s := []string{"red", "black"} 
 // The capacity and length of the slice will be automatically filled in
 ```
-</details>
+:::
 
 
 ## Others
 ### What is the difference between `rune` and `byte` in Go?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 In Go language, `byte` and `rune` are both types used to represent characters, but there are some differences between them:
 
@@ -249,12 +248,12 @@ fmt.Printf("a occupies %d bytes\nb occupies %d bytes", unsafe.Sizeof(a), unsafe.
 #### Different character ranges represented:
 Since the value that the byte type can represent is limited, there are only 2^8=256. So if you want to represent Chinese, you can only use the rune type.
 
-</details>
+:::
 
 Here is the English translation of your text:
 
 ### What are deep copy and shallow copy in golang?
-<details> <summary>Click to expand</summary>
+::: details Answer
 
 - What is copying?
 
@@ -330,12 +329,11 @@ func main() {
 [7 8 9]
 ```
 
-</details>
+:::
 
 ### What's the difference between `make` and `new`?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 `new` is used to allocate memory for any type and return a pointer to that type, initializing the value to zero.
 
@@ -373,23 +371,21 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ### What's the difference between arrays and slices?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 - The length of an array is fixed, determined at creation, and cannot be changed. The length of a slice is dynamic and will automatically expand based on the data added.
 - When passing parameters in functions, data is passed by value, while slices are passed by reference.
 - Slices have a capacity (capacity) parameter, arrays do not.
 
-</details>
+:::
 
 ### If `for range` adds data at the same time, will `for range` execute indefinitely?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 No, when executing `for range`, what is actually traversed is a copy of the variable, so changing the traversed variable will not have an impact.
 
@@ -409,12 +405,11 @@ func main() {
 }
 ```
 
-</details>
+:::
 
 ### What is the execution order of multiple defers?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 The execution order is similar to a stack, first in, last out.
 
@@ -444,12 +439,11 @@ func main() {
 
 ```
 
-</details>
+:::
 
 ### What is data overflow?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 When using numeric types, if the data reaches the maximum value, the next data will overflow, such as `uint` will start from 0 after overflow, `int` will become negative after overflow.
 
@@ -478,12 +472,11 @@ How to avoid?
 - Use uint for positive numbers first, the range is larger
 - Add judgment code to determine whether it overflows 
 
-</details>
+:::
 
 ### Should function parameters use value or pointer?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 - Value transfer
 
@@ -493,15 +486,14 @@ Generally speaking, value transfer can be used for common types. The advantage o
 
 The advantage of using pointer transfer is that it directly transfers the address of the variable, without the need for extra space. The disadvantage is that data modification during concurrent operations will affect the original data. Passing in a slice is actually passing the pointer of the slice to avoid repeated copying. If an array is passed in, it is value transfer, and a copy will be made.
 
-</details>
+:::
 
 
 ## Map
 
 ### Can an uninitialized Map read a key?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 Yes, an uninitialized `map` that hasn't undergone `make` initialization will return the zero value of the current type for any `key` read.
 
@@ -519,12 +511,11 @@ func main() {
 // Output:
 // 0
 ```
-</details>
+:::
 
 ### What happens if you assign a value to an uninitialized Map?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 It will trigger a `panic` exception error.
 
@@ -541,12 +532,11 @@ func main() {
 // panic: assignment to entry in nil map
 ```
 
-</details>
+:::
 
 ### What happens if you delete a key from an uninitialized Map?
 
-<details>
-<summary>Click to expand</summary>
+::: details Answer
 
 In earlier versions, performing a `delete` operation on an uninitialized `map` would throw a `panic` error. In current versions, performing a `delete` operation on an uninitialized `map` will not cause an error.
 
@@ -563,4 +553,4 @@ func main() {
 // 
 ```
 
-</details>
+:::

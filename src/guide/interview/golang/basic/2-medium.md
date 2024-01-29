@@ -5,8 +5,7 @@ title: "进阶"
 
 ### 使用过 `context` 吗？ `context` 有哪些使用场景？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 | 场景     | 介绍                                                            |
 | -------- | --------------------------------------------------------------- |
@@ -15,32 +14,29 @@ title: "进阶"
 | 传递数据 | 我们可以将数据写入 `context`, 在不同协程间传递数据              |
 
 
-</details>
+:::
 
 ### channel 是线程安全的吗？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 `channel` 是线程安全的，原因是 channel 内部实现了锁的机制，
 
-</details>
+:::
 
 ### Map 使用 range 遍历时是有序还是无序的？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 **无序的**
 
 Map 在内部使用哈希算法放置元素，在自动扩容时又会重新计算哈希值，因此元素的地址会不断变化，官方为了避免用户认为 Map 元素排列是有序的，直接采用随机顺序返回，所以遍历是无序的。
 
-</details>
+:::
 
 ### Map 并发安全吗？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 **Map不能保证并发安全**
 
@@ -49,12 +45,11 @@ Map 在内部使用哈希算法放置元素，在自动扩容时又会重新计�
 - 手动加读写锁
 - 使用 `sync.Map`
 
-</details>
+:::
 
 ### Map 的 key 删除后 key 的内存会被释放吗？
 
-<details>
-<summary>展开查看</summary>
+::: details 答案
 
 若 map 的 value 为 
 
@@ -70,4 +65,4 @@ Map 在内部使用哈希算法放置元素，在自动扩容时又会重新计�
 [代码实战解析](https://articles.zsxq.com/id_4w1a11i6xrw0.html)
 :::
 
-</details>
+:::
