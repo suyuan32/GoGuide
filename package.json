@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "docs:build": "vuepress-vite build src",
-    "docs:clean-dev": "vuepress dev src --clean-cache",
-    "docs:dev": "vuepress dev src",
+    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
+    "docs:dev": "vuepress-vite dev src",
     "docs:update-package": "pnpm dlx vp-update"
   },
   "devDependencies": {
