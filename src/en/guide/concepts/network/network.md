@@ -134,11 +134,61 @@ The `HTTPS` protocol will encrypt the transmitted data, and the encryption proce
 
 ![https](/assets/image/article/network/httpsgraph_en.png)
 
-::: info
-#### What is an SSL digital certificate?
-An SSL digital certificate is an integer issued by an institution for transmission encryption to ensure the security of data transmission.
+### HTTP 1.0 vs 1.1 vs 2.0
 
-#### How to ensure that the public key is not tampered with and trusted?
-Our computer can access the issuing institution of the data certificate to confirm whether the data certificate has been tampered with or forged, and the digital certificate has a signature to prevent tampering.
+::: tip Differences
+| Feature     | HTTP 1.0                    | HTTP 1.1                           | HTTP 2.0                          |
+|--------|-----------------------------|------------------------------------|-----------------------------------|
+| Connection   | Non-persistent, each request requires a new connection              | Persistent, reduces the overhead of repeated TCP connection establishment and termination     | Multiplexing, multiple HTTP requests can be concurrent on a single TCP connection     |
+| Head-of-line blocking   | Exists, the next request can only be sent after the response of the previous request arrives  | Exists, although multiple requests can be initiated, the server must send responses in the order of received requests  | Solved, multiple requests or responses can be concurrent in a single connection without having to correspond one by one  |
+| Header compression   | Not supported                         | Not supported                                | Supported, uses HPACK algorithm to compress headers       |
+| Server push  | Not supported                         | Not supported                                | Supported                                |
+:::
+
+### Digital Certificate
+
+A digital certificate is an authoritative electronic document that provides a way to verify identity on the Internet. Digital certificates verify the online credentials and identity of individuals or organizations, and let network users and recipients know that the data they enter will go to a trusted source. They are similar to security badges for websites and users, and help ensure the security of the Internet.
+
+Digital certificates are issued by Certificate Authorities (CAs) for encrypting online data. Digital certificates are also known as public key certificates or identity certificates. For example, TLS/SSL certificates have two purposes: to encrypt and protect data transmitted between websites, browsers, and web servers, and to help identify and verify the owner of the website.
+
+The basic architecture of a digital certificate is Public Key Infrastructure (PKI), which uses a pair of keys to implement encryption and decryption. The keys include a private key and a public key. The private key is mainly used for signing and decryption, is user-defined, and is known only to the user; the public key is used for signature verification and encryption, and can be shared by multiple users.
+
+The application of digital certificates is very wide. For example, using digital certificates in secure email can construct secure email certificates, mainly for encrypting the transmission of emails, protecting the security of emails during transmission and reception. In addition, digital certificates can also be used for terminal protection. For example, if a digital certificate is installed during the process of e-commerce activities, then even if its account or password and other personal information are stolen, the information and financial security in its account can still be effectively guaranteed.
+
+#### How Digital Signature Works
+
+![signature](/assets/image/article/network/signature.png)
+
+> Signature Process
+
+1. Use the signature hash algorithm (such as `sha256` `md5`) to calculate information including the issuer's information, the certificate holder's information, the certificate validity period, the certificate holder's public key, etc. (as in the example of `x.509`), to generate a certificate digest `α`.
+2. The issuer generates a pair of private and public keys, then uses the private key to encrypt the fingerprint, and the encrypted data is the issuer's digital signature `γ`.
+3. Attach the digital signature `γ` to the digital certificate to form a signed digital certificate.
+4. The issuer gives the signed digital certificate and the public key to the certificate holder.
+
+> Verification Process
+
+1. The user obtains the signed digital certificate through some means (for example, browser access), and after parsing, the digital signature `γ` and the digital certificate can be obtained.
+2. The user uses the fingerprint algorithm in the digital certificate to recalculate the relevant content of the digital certificate, generating a new fingerprint `β`.
+3. At the same time, the user uses the obtained issuer's public key to decrypt the digital signature, and obtains the decrypted fingerprint `α`.
+4. Compare the two fingerprints `α` and `β`. If they are the same, it proves that the certificate is legal, and the user can trust and use the information in the certificate (for example, the holder's public key).
+
+::: details Example: Information contained in an X.509 certificate
+1. Certificate version information
+2. Certificate serial number
+3. Signature algorithm used by the certificate
+4. Name of the certificate issuing authority
+5. Certificate validity period, now commonly used certificates generally use UTC time format, its timing range is 1950-2049
+6. Name of the certificate owner
+7. Public key of the certificate owner
+8. Signature of the certificate issuer on the certificate
+:::
+
+::: tip Functions
+
+1. Data encryption: Encrypt data to ensure data security
+2. Identity confirmation: Ensure the correct identity of both parties
+3. Non-tampering: Unable to modify signed files
+4. Non-repudiation: Under the supervision of CA, ensure that transactions cannot be denied after they are concluded
 
 :::
