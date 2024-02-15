@@ -5,6 +5,11 @@ export const enNavbar = navbar([
   {
     text: "Guide",
     icon: "icon-park-outline:mountain",
-    link: "/en/guide"
+    link: "/en/guide/README.md"
+  },
+  {
+    text: "Distributed Framework",
+    icon: "fa6-solid:circle-nodes",
+    link: "https://doc.ryansu.tech/zh/"
   },
 ]);
