@@ -67,3 +67,82 @@ The reason why a four-way handshake is needed is because TCP is a **full-duplex*
 ::: details
 If the client sends a `SYN` command, and drops the line before the server returns the `SYN` command, the server will try to resend the `SYN-ACK` command. Under Linux, the default is to retry 5 times, the interval time starts to double from 1s, i.e., `1s, 2s, 4s, 8s, 16s`, so the timeout time is `1s + 2s + 4s+ 8s+ 16s + 32s = 63s`. After the timeout, TCP will disconnect.
 :::
+
+
+#### How does TCP ensure the reliability of transmission?
+
+::: tip TCP ensures the reliability of data transmission through the following features
+
+- Sequence numbers and acknowledgments
+- Timeout retransmission
+- Flow control
+- Congestion control
+- Checksum
+
+:::
+
+##### Sequence numbers and acknowledgment signals
+
+TCP uses sequence numbers to sort and deduplicate packets, and through the ACK acknowledgment mechanism, it ensures that packets are successfully delivered, ensuring the integrity of the data.
+
+#### Timeout retransmission
+
+TCP can retransmit packets until an ACK acknowledgment is received when packets are lost or delayed, through the timeout retransmission mechanism.
+
+::: warning What is RTT? What is RTO?
+
+::: details
+RTT stands for Round Trip Time, which refers to the time required for data to be transmitted from the sender to the receiver and back. RTT is used to measure network latency, that is, the total time that data passes through during transmission.
+
+RTO stands for Retransmission Timeout, which refers to the time that the sender waits for acknowledgment (ACK) after sending data in network communication. If the sender does not receive an acknowledgment within the RTO time, it will assume that the data is lost and resend the data.
+
+The calculation of RTO is usually based on the measurement of RTT. The sender estimates the RTO of the next data transmission based on the previous RTT. In general, the value of RTO will be larger than RTT to ensure that data can be successfully retransmitted even in cases of high or unstable network latency.
+
+The calculation method of RTO can vary depending on the specific network protocol or implementation, but its purpose is to ensure the reliable transmission of data to cope with problems such as packet loss, delay, and congestion in the network.
+:::
+
+::: warning What is the impact of RTO length on retransmission?
+
+::: details 
+If the RTO is too long, the retransmission time will be greatly extended, reducing transmission efficiency. If the RTO is too short, it may lead to frequent retransmissions, exacerbating network congestion, and further triggering more retransmissions.
+:::
+
+
+::: tip Common retransmission mechanisms
+
+::: details
+
+- Timeout retransmission
+
+![timeout retransmission](/assets/image/article/network/timeout-retransmission.png)
+
+There are two situations for timeout retransmission, the timeout caused by the loss of the sent data packet, and the timeout caused by the loss of the returned ACK data packet. Under the timeout retransmission mechanism, a timer is started every time a data packet is sent. If the timer expires, retransmission will be triggered. If the retransmission fails, the next timeout time will be twice the current value. ==The disadvantage of timeout retransmission is that the cycle is long, which may reduce efficiency.==
+
+- Fast retransmission
+
+![tcp](/assets/image/article/network/tcp-3-retry-new.png)
+
+Under the fast retransmission mechanism, after a data packet is lost, the receiving end immediately returns a duplicate acknowledgment packet for each out-of-order packet received, informing the sending end of the missing packet. When the sender receives three duplicate acknowledgment packets, it will immediately retransmit the missing packet.
+
+==Under the fast retransmission mechanism, we can see that the packets `3,4,5` all return `ACK=2`, so we need to retransmit the packets `3,4,5`. Is there a way to not need to retransmit packets `3,4,5`?==
+
+- SACK (Selective Acknowledgment)
+
+![SACK](/assets/image/article/network/sack.png)
+
+The SACK method ([RFC 2018](https://www.ietf.org/rfc/rfc2883.txt)) adds a buffer to the tcp option field to record the transmitted packets, so that the sender can see the packets that have not been successfully transmitted, allowing the sender to only transmit the missing packets without needing to retransmit other packets.
+
+- D-SACK (Duplicate SACK)
+
+D-SACK ([RFC 2883](https://datatracker.ietf.org/doc/html/rfc2018)) mainly solves the problem of ACK loss. D-SACK uses the first segment of SACK as a flag to mark the packets that have been ACKed. When the receiving end receives a duplicate packet, it will write the packet into the D-SACK flag, telling the sender that the packet has been received, and the ACK may have been lost.
+:::
+
+### UDP
+
+### Common interview questions
+
+::: tip What is a SYN Flood attack?
+
+::: details
+
+:::

@@ -33,7 +33,7 @@ title: "TCP/UDP"
 
 ![TCP Stateful](/assets/image/article/network/tcp_state.png)
 
-#### TCP 三次握手
+#### TCP 三次握手/四次挥手
 
 ![TCP Connection](/assets/image/article/network/tcp-connect.png)
 
@@ -68,3 +68,104 @@ TCP 建立连接的过程就是同步序列号的过程，SYN (Synchronize Seque
 ::: details
 假如客户端发送 `SYN` 指令，在服务器返回 `SYN` 指令之前掉线了，服务器会尝试重发 `SYN-ACK` 指令，linux 下默认重试 5 次，间隔时间从 1s 开始翻倍增长，即 `1s, 2s, 4s, 8s, 16s`, 因此超时时间为  `1s + 2s + 4s+ 8s+ 16s + 32s = 63s`。在超时之后 TCP 才会断开连接。
 :::
+
+#### TCP 如何保证传输的可靠性？
+
+::: tip TCP 通过以下几个特性保证数据传输的可靠性
+
+- 序列号和确认应答
+- 超时重传
+- 流量控制
+- 拥塞控制
+- 校验和
+
+:::
+
+##### 序列号和确认应答信号
+
+TCP 通过序列号可以对数据包进行排序和去重，同时通过 ACK 应答机制确保数据包成功送达，保证了数据的完整性。
+
+#### 超时重传
+
+TCP 通过超时重传机制可以在数据包丢失或者延迟时，重新发送数据包直到收到 ACK 应答。
+
+::: warning 什么是RTT？什么是RTO？
+
+::: details
+RTT代表往返时间（Round Trip Time），是指数据从发送方传输到接收方并返回所需的时间。RTT用于衡量网络延迟，即数据在传输过程中经过的总时间。
+
+RTO代表重传超时时间（Retransmission Timeout），是指在网络通信中，发送方发送数据后等待确认（ACK）的时间。如果发送方在RTO时间内未收到确认，它会假设数据丢失，并重新发送该数据。
+
+RTO的计算通常基于RTT的测量。发送方根据前一次的RTT来估计下一次发送数据的RTO。一般情况下，RTO的值会比RTT大一些，以确保在网络延迟较高或不稳定的情况下也能够成功重传数据。
+
+RTO的计算方法可以根据具体的网络协议或实现而有所不同，但其目的是为了确保数据的可靠传输，以应对网络中的丢包、延迟和拥塞等问题。
+:::
+
+::: warning RTO 长短对重传有什么影响？
+
+::: details 
+若 RTO 过长则重传时间会大大延长，降低传输效率。若 RTO 过短则可能会导致频繁重传，加剧网络的拥堵，进一步触发更多的重传。
+:::
+
+
+::: tip 常见的重传机制
+
+::: details
+
+- 超时重传
+
+![timeout retransmission](/assets/image/article/network/timeout-retransmission.png)
+
+超时重传有两种情况，发送的数据包丢失导致的超时，和返回的 ACK 数据包丢失导致的超时。超时重传机制下，在每次发送数据包的时候都会启动一个定时器，如果定时器到期则会触发重传。若重传失败，则下一次超时时间为当前值的两倍。==超时重传的缺点是周期较长，可能会降低效率。==
+
+- 快速重传
+
+![tcp](/assets/image/article/network/tcp-3-retry-new.png)
+
+在快速重传机制下，在数据包丢失后，接收端每接收一个失序的数据包就立即返回重复的确认报文段，告知发送端缺少的报文段。当发送方收到三个重复的确认报文段后，会立即重传缺失的报文段。
+
+==在快速重传的机制下，我们可以看到 `3,4,5` 的报文段返回的都是 `ACK=2`, 因此还需要重传 `3,4,5` 报文段。有没有方法可以不需要重传 `3,4,5` 报文段？==
+
+- SACK (Selective Acknowledgment, 选择性确认)
+
+![SACK](/assets/image/article/network/sack.png)
+
+SACK 方法 ([RFC 2018](https://www.ietf.org/rfc/rfc2883.txt)) 在 tcp 的 option 字段添加了缓冲区，用于记录已传输的数据包，这样发送方可以看到未成功传输的数据包，使得发送方可以仅传输缺失的数据包而不需要额外重传其他数据包。
+
+- D-SACK (Duplicate SACK, 重复选择性确认)
+
+D-SACK ([RFC 2883](https://datatracker.ietf.org/doc/html/rfc2018)) 主要解决了 ACK 丢失的问题， D-SACK 使用 SACK 第一个段作为标志位，用于标记已经 ACK 的数据包。 当接收端接收到重复的报文段时会将该报文段写入 D-SACK 的标志位，告诉发送方已接收到报文段， ACK 可能已丢失。
+:::
+
+#### 流量控制
+
+TCP 使用滑动窗口来控制流量，使得发送端可以根据接收端的接收能力控制发送数据的速度。
+
+![发送窗口(窗口大小为 7)](/assets/image/article/network/tcp-send-window.png)
+![接收窗口(窗口大小为 7)](/assets/image/article/network/tcp-receive-window.png)
+
+::: warning 
+接收端在应答 `ACK` 的时候会将当前可用的窗口大小写入 tcp 头部，发送端根据窗口大小调整发送速率。
+:::
+
+#### 拥塞控制
+
+::: tip 算法
+- 慢启动
+- 拥塞避免
+- 快重传
+- 快恢复
+:::
+
+![拥塞控制](/assets/image/article/network/tcp-congestion-control.png)
+
+### UDP
+
+### 常见面试题
+
+::: tip 什么是 SYN Flood 攻击？
+
+::: details
+
+:::
+
