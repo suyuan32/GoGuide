@@ -81,11 +81,11 @@ If the client sends a `SYN` command, and drops the line before the server return
 
 :::
 
-##### Sequence numbers and acknowledgment signals
+##### **Sequence numbers and acknowledgment signals**
 
 TCP uses sequence numbers to sort and deduplicate packets, and through the ACK acknowledgment mechanism, it ensures that packets are successfully delivered, ensuring the integrity of the data.
 
-##### Timeout retransmission
+##### **Timeout retransmission**
 
 TCP can retransmit packets until an ACK acknowledgment is received when packets are lost or delayed, through the timeout retransmission mechanism.
 
@@ -137,9 +137,59 @@ The SACK method ([RFC 2018](https://www.ietf.org/rfc/rfc2883.txt)) adds a buffer
 D-SACK ([RFC 2883](https://datatracker.ietf.org/doc/html/rfc2018)) mainly solves the problem of ACK loss. D-SACK uses the first segment of SACK as a flag to mark the packets that have been ACKed. When the receiving end receives a duplicate packet, it will write the packet into the D-SACK flag, telling the sender that the packet has been received, and the ACK may have been lost.
 :::
 
-#### Checksum
+##### **Flow Control**
 
-TCP also calculates a checksum on the data to ensure that the data was not lost or corrupted during transmission.
+TCP uses a sliding window to control traffic, allowing the sender to control the speed of data transmission based on the receiver's receiving capacity.
+
+::: warning 
+The receiver will write the currently available window size into the TCP header when responding with `ACK`, and the sender adjusts the transmission rate based on the window size.
+:::
+
+##### **Congestion Control**
+
+::: tip Algorithms
+- Slow Start
+- Congestion Avoidance
+- Fast Retransmit
+- Fast Recovery
+:::
+
+![Congestion Control](/assets/image/article/network/tcp-congestion-control.png)
+
+::: info Related Terms
+- cwnd - Congestion Window
+- ssthresh - Slow Start Threshold
+:::
+
+::: important
+
+- If `cwnd < ssthresh`, use the Slow Start algorithm.
+
+- If `cwnd > ssthresh`, use the Congestion Avoidance algorithm.
+
+- If `cwnd = ssthresh`, use either the Slow Start or Congestion Avoidance algorithm.
+:::
+
+###### **Slow Start**
+
+In the Slow Start phase, the initial value of `cwnd` is `1`, and `cwnd` will double every time a propagation round passes, until it reaches `ssthresh`.
+
+###### **Congestion Avoidance**
+
+When `cwnd` reaches `ssthresh`, the Congestion Avoidance algorithm will be executed. At this time, the growth of `cwnd` changes from doubling to adding `1` every time a propagation round passes. If the sender detects network congestion (i.e., the sent message does not get a timely response), it will set `ssthresh` to half of the `cwnd` value when network congestion occurs, and the value of `cwnd` will be reset to `1`, and Slow Start will be re-executed.
+
+###### **Fast Retransmit and Fast Recovery**
+
+Fast Retransmit has been introduced earlier, that is, if three consecutive duplicate acknowledgments are received, the yet-to-be-received packet segment will be sent immediately. The Fast Recovery algorithm needs to be used in conjunction with the Fast Retransmit algorithm.
+
+::: info Fast Recovery Algorithm
+- When the sender receives three consecutive duplicate acknowledgments, it halves `ssthresh`.
+- Set `cwnd` to the size of `ssthresh`
+:::
+
+##### **Checksum**
+
+TCP will also calculate a checksum for the data to ensure that the data is not lost or erroneous during transmission.
 
 ### UDP
 
