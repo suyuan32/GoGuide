@@ -62,7 +62,7 @@ The process of TCP establishing a connection is the process of synchronizing seq
 The reason why a four-way handshake is needed is because TCP is a **full-duplex** protocol, i.e., both the client and the server can actively send messages, so both ends need to send disconnect instructions after the transmission is completed, and need to send `FIN=1` separately to disconnect, and use `ACK` to determine whether the sending was successful.
 :::
 
-::: danger What happens if SYN times out during connection?
+::: caution What happens if SYN times out during connection?
 
 ::: details
 If the client sends a `SYN` command, and drops the line before the server returns the `SYN` command, the server will try to resend the `SYN-ACK` command. Under Linux, the default is to retry 5 times, the interval time starts to double from 1s, i.e., `1s, 2s, 4s, 8s, 16s`, so the timeout time is `1s + 2s + 4s+ 8s+ 16s + 32s = 63s`. After the timeout, TCP will disconnect.
@@ -85,7 +85,7 @@ If the client sends a `SYN` command, and drops the line before the server return
 
 TCP uses sequence numbers to sort and deduplicate packets, and through the ACK acknowledgment mechanism, it ensures that packets are successfully delivered, ensuring the integrity of the data.
 
-#### Timeout retransmission
+##### Timeout retransmission
 
 TCP can retransmit packets until an ACK acknowledgment is received when packets are lost or delayed, through the timeout retransmission mechanism.
 
@@ -137,12 +137,54 @@ The SACK method ([RFC 2018](https://www.ietf.org/rfc/rfc2883.txt)) adds a buffer
 D-SACK ([RFC 2883](https://datatracker.ietf.org/doc/html/rfc2018)) mainly solves the problem of ACK loss. D-SACK uses the first segment of SACK as a flag to mark the packets that have been ACKed. When the receiving end receives a duplicate packet, it will write the packet into the D-SACK flag, telling the sender that the packet has been received, and the ACK may have been lost.
 :::
 
+#### Checksum
+
+TCP also calculates a checksum on the data to ensure that the data was not lost or corrupted during transmission.
+
 ### UDP
 
-### Common interview questions
+UDP, short for User Datagram Protocol, is a connectionless transport layer protocol in the OSI (Open Systems Interconnection) reference model. It provides a simple, unreliable transaction-oriented message delivery service, and its official specification is `IETF RFC 768`.
 
-::: tip What is a SYN Flood attack?
+#### Characteristics
 
-::: details
+- Connectionless: UDP does not need to establish a connection between the client and the server before transmitting data.
+- Fast: Since UDP does not need to handshake or check whether the data has arrived correctly, it can transmit data faster than TCP.
+- Unreliability: Once the datagram is sent, it is impossible to know whether it has arrived safely and completely. If the UDP datagram is lost during transmission, it will not be resent.
+- Widely used: UDP is used to support network applications that need to transmit data between computers. Many client/server model network applications, including network video conferencing systems, need to use the UDP protocol. For example, many Internet phone services use IP voice (VoIP) usually sent using UDP.
+
+#### Structure
+
+| Field            | Size   | Description                                                           |
+| ---------------- | ------ | --------------------------------------------------------------------- |
+| Source Port      | 16-bit | Source port number. If all are 0, no reply is allowed                 |
+| Destination Port | 16-bit | Destination port number                                               |
+| Length           | 16-bit | Length of the UDP user datagram, its minimum value is 8 (header only) |
+| Checksum         | 16-bit | Detect whether the data is lost or modified during transmission       |
+
+#### Broadcast Types
+
+| Type      | Description                                                                                                                                                                            |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Unicast   | Used for end-to-end communication between two hosts. That is, one-to-one (client and server point-to-point connection)                                                                 |
+| Broadcast | Used for a host to communicate with all hosts on the entire LAN. That is, one to all. Broadcasting is prohibited from transmitting on the Internet broadband network (broadcast storm) |
+| Multicast | Communicate with a specific group of hosts, not all hosts on the entire LAN. That is, one to a group                                                                                   |
+
+::: warning 
+- TCP only supports one-to-one
+- UDP multicast is more commonly used, broadcast is only used for LAN
+:::
+
+::: info Difference between TCP and UDP
+
+| Feature                             | TCP                 | UDP            |
+| ----------------------------------- | ------------------- | -------------- |
+| Reliable Transmission               | Yes                 | No             |
+| Connection                          | Connection-oriented | Connectionless |
+| Data Orderliness                    | Yes                 | Not guaranteed |
+| Data Boundary                       | Not preserved       | Preserved      |
+| Transmission Speed                  | Relatively slow     | Fast           |
+| Flow Control and Congestion Control | Yes                 | No             |
+| Protocol Type                       | Heavyweight         | Lightweight    |
+| Header Length                       | 20 bytes            | 8 bytes        |
 
 :::

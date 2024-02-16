@@ -1,6 +1,6 @@
 ---
 order: 1
-title: "Computer Network"
+title: "Basic"
 ---
 
 ### OSI Seven-Layer Model
@@ -137,12 +137,12 @@ The `HTTPS` protocol will encrypt the transmitted data, and the encryption proce
 ### HTTP 1.0 vs 1.1 vs 2.0
 
 ::: tip Differences
-| Feature     | HTTP 1.0                    | HTTP 1.1                           | HTTP 2.0                          |
-|--------|-----------------------------|------------------------------------|-----------------------------------|
-| Connection   | Non-persistent, each request requires a new connection              | Persistent, reduces the overhead of repeated TCP connection establishment and termination     | Multiplexing, multiple HTTP requests can be concurrent on a single TCP connection     |
-| Head-of-line blocking   | Exists, the next request can only be sent after the response of the previous request arrives  | Exists, although multiple requests can be initiated, the server must send responses in the order of received requests  | Solved, multiple requests or responses can be concurrent in a single connection without having to correspond one by one  |
-| Header compression   | Not supported                         | Not supported                                | Supported, uses HPACK algorithm to compress headers       |
-| Server push  | Not supported                         | Not supported                                | Supported                                |
+| Feature               | HTTP 1.0                                                                                     | HTTP 1.1                                                                                                              | HTTP 2.0                                                                                                                |
+| --------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Connection            | Non-persistent, each request requires a new connection                                       | Persistent, reduces the overhead of repeated TCP connection establishment and termination                             | Multiplexing, multiple HTTP requests can be concurrent on a single TCP connection                                       |
+| Head-of-line blocking | Exists, the next request can only be sent after the response of the previous request arrives | Exists, although multiple requests can be initiated, the server must send responses in the order of received requests | Solved, multiple requests or responses can be concurrent in a single connection without having to correspond one by one |
+| Header compression    | Not supported                                                                                | Not supported                                                                                                         | Supported, uses HPACK algorithm to compress headers                                                                     |
+| Server push           | Not supported                                                                                | Not supported                                                                                                         | Supported                                                                                                               |
 :::
 
 ### Digital Certificate

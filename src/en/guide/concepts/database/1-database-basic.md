@@ -1,6 +1,6 @@
 ---
 order: 1
-title: "Database basic"
+title: "Basic"
 ---
 
 ## Relationship Keys
