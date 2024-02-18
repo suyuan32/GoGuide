@@ -25,8 +25,6 @@ The Media Access Control Address (MAC) is also known as the hardware address, wh
 
 ## ARP Packet
 
-### Packet Format
-
 <table style="text-align:center;">
     <tbody>
         <tr>
@@ -86,4 +84,48 @@ The Media Access Control Address (MAC) is also known as the hardware address, wh
 | Destination MAC          | 48 bits | Destination MAC address. The value of this field in an ARP Request packet is `0x0000-0000-0000`                          |
 | Destination IP           | 32 bits | Destination IP address                                                                                                   |
 
+:::
+
+## Working Principle
+
+In network devices that support the TCP/IP protocol, each maintains an ARP cache table. The cache table stores the mapping relationship of IP addresses, in the format `IP - MAC address - Time to Live (TTL)`, where the default value of `TTL` is 20 minutes.
+
+::: tip Example
+
+Suppose there are the following devices in the local area network:
+
+| Host Name | IP Address    | MAC Address       |
+| --------- | ------------- | ----------------- |
+| A         | 192.168.50.00 | 00-AA-00-10-A2-00 |
+| B         | 192.168.50.01 | 00-BB-00-10-B2-00 |
+| C         | 192.168.50.02 | 00-CC-00-10-C2-00 |
+| D         | 192.168.50.03 | 00-DD-00-10-D2-00 |
+| E         | 192.168.50.04 | 00-EE-00-10-E2-00 |
+
+If A (192.168.50.00) sends data to D (192.168.50.03), the following steps will be executed:
+
+1. If the `ARP` cache table of host `A` contains the `IP` address of host `D`, it will directly get the `MAC` address of host `D` from the cache table, write the `MAC` address into the data frame and send it.
+2. If the `ARP` cache table of host `A` does not contain the `IP` address of host `D`, it will broadcast in the network, with the broadcast address. All hosts in the network will receive this broadcast.
+3. After receiving the broadcast, host `D` will respond to host `A`, using **unicast** to tell host `A` its `MAC` address. **Other hosts will not respond after receiving the broadcast.** After receiving the response, host `A` can send messages to host `D` and update its own cache table.
+
+::: warning What if the hosts are not in the same local area network?
+
+If host `A` and host `D` are not in the same local area network and are connected through two routers, the router where `A` is located will get the `IP` and `MAC` address of the target subnet router based on the target `IP`. The steps are as follows:
+
+1. Host `A` will first determine whether host `D` is in the same segment. If not in the same segment, host `A` will try to get the MAC address of the default gateway (usually the local router).
+2. Host `A` sends data to the router, and the data will be forwarded by the router.
+3. Before forwarding the data, the router obtains the `MAC` address of the target router through the `ARP` protocol.
+4. The router sends data to the target router, and the target router then sends the data to the host in the target subnet through the `ARP` cache.
+
+:::
+
+::: details What are Reverse Address Resolution Protocol (RARP) and Proxy Address Resolution Protocol (Proxy ARP)?
+
+- Reverse Address Resolution Protocol (RARP)
+
+Reverse Address Resolution Protocol is primarily used to obtain the IP address of a device based on its MAC address. Network devices broadcast their MAC address to a server using the RARP protocol, and the server assigns an IP address to the network device.
+
+- Proxy Address Resolution Protocol (Proxy ARP)
+
+Proxy Address Resolution Protocol is mainly used to enable sub-devices in different network segments that share a router IP to resolve MAC addresses. The sender only needs to send data to the router, and the router forwards the data to the target device using the Proxy ARP protocol.
 :::

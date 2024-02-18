@@ -112,7 +112,7 @@ export default hopeTheme({
       // echarts: true,
 
       // install flowchart.ts before enabling it
-      // flowchart: true,
+      flowchart: true,
 
       // gfm requires mathjax-full to provide tex support
       // gfm: true,
