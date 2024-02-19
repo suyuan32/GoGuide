@@ -141,3 +141,7 @@ The receiver collects the fragments and sorts them based on the offset. Once all
 | **Security**                 | Requires the use of IPSec                      | Native support for IPSec                                                              |
 | **Configuration**            | Manual or DHCP                                 | Manual, automatic (based on link-local addresses and router announcements), or DHCPv6 |
 :::
+
+### What is IP Spoofing?
+
+IP spoofing refers to the technique of forging the IP address of a host. An attacker can send a large number of data segments with different IP addresses and the RST flag set to a server, causing the server to disconnect from the host. If other hosts need to access the server, they will need to establish a new connection. Alternatively, the attacker can impersonate another host and establish a connection with the server to steal data.

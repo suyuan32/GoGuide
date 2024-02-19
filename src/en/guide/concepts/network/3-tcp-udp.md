@@ -238,3 +238,48 @@ UDP, short for User Datagram Protocol, is a connectionless transport layer proto
 | Header Length                       | 20 bytes            | 8 bytes        |
 
 :::
+
+### Common TCP/UDP Attacks
+
+::: warning SYN Flood Attack
+
+The principle of a SYN Flood attack is very simple. It takes advantage of the server's timeout mechanism. When the receiver receives a `SYN` request, it responds with a `SYN + ACK` reply. If the receiver doesn't receive a response to its reply, it retries the connection (learn more about what happens when SYN times out in the TCP three-way handshake and four-way handshake). This creates a half-open connection state. An attacker can exploit this by sending a large number of half-open connection requests from multiple hosts to the server, eventually causing the server's resources to be exhausted and unable to provide services.
+
+> [!tip]
+> **How to detect SYN Flood attacks?**
+> 1. Increased inbound network traffic: SYN Flood causes a sudden increase in inbound network traffic to the server.
+> 2. Decreased network performance: SYN Flood leads to a decline in network performance.
+> 3. Numerous SYN half-open connections: SYN Flood generates a large number of half-open connections.
+> 4. Unresponsive server: SYN Flood prevents the server from responding to requests.
+
+::: important How to mitigate?
+
+| Defense Measure                        | Description                                                                                                                                                                                               |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Increase maximum half-open connections | Increasing the maximum number of half-open connections allows the server to handle a large number of incoming SYN requests, providing a buffer against flood attempts.                                    |
+| Filtering                              | Set up rules in network devices to identify and block malicious SYN requests based on specific patterns or known malicious IP addresses.                                                                  |
+| Reduce SYN-RECEIVED timer              | By reducing the time the server waits for an ACK response after sending SYN-ACK, resources allocated to half-open connections can be released more quickly.                                               |
+| SYN cache                              | The server uses a cache to store minimal information about each request, minimizing resource consumption.                                                                                                 |
+| SYN Cookies                            | The server responds with a SYN-ACK without immediately allocating resources for the connection. Resources are allocated only upon receiving a legitimate ACK response.                                    |
+| Load balancer                          | Distribute incoming network traffic across multiple servers, ensuring that no single server becomes the primary target of the attack.                                                                     |
+| Firewall and proxy                     | Deploying firewalls and proxies can filter out malicious traffic before it reaches the target server, providing an additional layer of defense.                                                           |
+| Honeypots and honeynets                | Honeypots absorb and divert attacks, providing valuable distractions to attackers and protecting critical infrastructure. Honeynets gather threat intelligence by collecting data on attacker strategies. |
+| Rate limiting                          | Limiting the rate of incoming connection requests is an important strategy to prevent SYN flood attacks.                                                                                                  |
+| Hybrid approaches                      | Combining multiple techniques can create layered defenses against TCP SYN Flood attacks, ensuring that protection remains even if one method fails.                                                       |
+| Cloud-based DDoS protection solutions  | Utilizing cloud-based DDoS protection solutions can offload and filter traffic to dedicated platforms capable of handling large-scale attacks.                                                            |
+
+:::
+
+::: warning What is a UDP Flood Attack?
+
+> [!important]
+> When a server receives a UDP packet, it performs the following operations:
+> 1. Checks if any program is listening on the corresponding port.
+> 2. If no program is found, the server responds with an ICMP packet indicating the destination is unreachable.
+
+Therefore, an attacker can overwhelm the server's resources by frequently sending a large number of UDP requests to multiple ports, causing the server to exhaust its resources while handling a large number of responses.
+
+::: details How to mitigate?
+
+One way to mitigate UDP Flood attacks is by limiting the ICMP response time. However, this can also impact legitimate PING requests.
+::: 
