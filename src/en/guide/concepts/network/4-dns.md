@@ -35,3 +35,16 @@ DNS (Domain Name System) is a distributed database used to store the mapping bet
 | MX          | Mail exchange server         |
 | NS          | Name server                  |
 | TXT         | Descriptive text             |
+
+## Common DNS Attacks
+
+| Attack Type                         | Description                                                                                                                                     |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| DNS Spoofing/Cache Poisoning        | An attack that introduces forged DNS data into the cache of a DNS resolver, causing the resolver to return incorrect IP addresses.              |
+| DNS Tunneling                       | An attack that establishes a tunnel using DNS queries and responses through another protocol.                                                   |
+| DNS Hijacking                       | An attack that redirects queries to other domain name servers.                                                                                  |
+| NXDOMAIN Attack                     | An attack that attempts to cause a denial of service by flooding a DNS server with requests for non-existent domains.                           |
+| Phantom Domain Attack               | An attack that sets up "phantom" domain servers that respond slowly or not at all, causing performance degradation and denial of service.       |
+| Random Subdomain Attack             | An attack that sends DNS queries for non-existent subdomains of legitimate sites, causing denial of service.                                    |
+| Domain Lock Attack                  | An attack that establishes TCP connections with other legitimate resolvers and sends slow, random packet streams to consume resolver resources. |
+| CPE Attack based on Zombie Networks | An attack that uses compromised CPE devices to perform random subdomain attacks against a site or domain.                                       |
