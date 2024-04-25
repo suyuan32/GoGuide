@@ -111,42 +111,47 @@ CREATE INDEX index_name ON table_name (field_name);
 CREATE INDEX index_name ON table_name (field_name1, field_name2, ...);
 ```
 
-## Index Creation Principles
+Translate to English:
 
-### Most Left Prefix Principle
+## Principles for Creating Indexes
 
-MySQL index uses the most left prefix principle, that is, only the most left prefix column of the index can be used in the query. For example, if a composite index `(a, b, c)` is created, then you can use `(a)`, `(a, b)`, `(a, b, c)` three indexes in the query, but you cannot use `(b, c)`, `(c)` and other indexes. 
+- Most Left Prefix Principle
+
+MySQL indexes use the most left prefix principle, that is, only the most left prefix column of the index can be used in the query. For example, if a composite index `(a, b, c)` is created, then you can use `(a)`, `(a, b)`, `(a, b, c)` three indexes in the query, but you cannot use `(b, c)`, `(c)` and other indexes. 
 ::: warning
 The most left match principle can trigger index query when encountering `>=`, `<=`, `between`, `like prefix match`, but if it encounters `>` and `<`, it will not trigger index query.
 :::
 
-### Choose Unique Index
+- Choose Unique Index
 
 When choosing an index, you should prefer to choose a unique index, because the unique index can guarantee the uniqueness of the data and avoid data duplication.
 
-### Choose High Discrimination Index
+- Choose High Discrimination Index
 
 When choosing an index, you should choose a high discrimination index. The high discrimination index can reduce the amount of data scanned and improve query efficiency.
 
-### Choose Index Column
+- Choose Index Column
 
 When choosing an index column, you should choose a frequently queried column, avoid choosing infrequently used columns, and improve the utilization rate of the index.
 
-### Try to Use Covering Index
+::: info Recommended Fields to Choose
+- Frequently queried fields
+- Frequently sorted fields
+- Fields that are not NULL
+- Fields often used for JOIN
+:::
 
-When creating an index, you should try to use a covering index to reduce the back-table query data and improve query efficiency.
-
-### Try to Use Short Index
-
-When creating an index, you should try to use a short index. The short index can reduce the storage space of the index and improve the query efficiency of the index.
-
-### Try to Use Prefix Index
+- Try to Use Prefix Index
 
 If the length of the index field is long, you can use a prefix index. The prefix index can reduce the storage space of the index and improve the query efficiency of the index.
 
-### Try to Extend Index Instead of Creating New Index
+- Try to Extend Index Instead of Creating New Index
 
 If we already have an `a` index, if we need an `a,b` index, then we can directly extend the `b` field on the `a` index, instead of creating a new `a,b` index.
+
+- Don't Have Too Many Indexes
+
+The number of indexes in a single table should not be too many. Too many indexes will increase the maintenance cost of the data and reduce the data write efficiency.
 
 
 ## Index Pushdown
@@ -158,4 +163,48 @@ Index pushdown (Index Condition Pushdown) is an optimization feature introduced 
 Before there was no index pushdown, if we had a composite index `(a, b)`, the query condition was `a = 1 and b = 2`, MySQL would first use the index `(a, b)` to query all `a = 1` data, and then go back to the table to query the corresponding complete data row, and then use the `b = 2` condition to judge whether each row meets the condition, and return the data rows that meet the condition.
 
 With index pushdown, MySQL will first use the index `(a, b)` to query all `a = 1 and b = 2` data, and then go back to the table to query the corresponding complete data row, reducing the amount of back-table query data and improving query efficiency.
+:::
+
+## Data Structure of Indexes
+
+### B-Tree
+
+A B-tree is a type of multi-way balanced search tree and is a commonly used index data structure.
+
+::: info Characteristics of B-Tree:
+- Each node contains multiple child nodes, and the number of child nodes for each node ranges from `[m/2, m]`, where `m` is the number of layers in the B-tree.
+- All leaf nodes are on the same level.
+- The root node has at least two child nodes unless the root node is a leaf node.
+- A non-leaf node with `k` child nodes contains `k-1` key values.
+- Each node contains both the index and all data.
+:::
+
+![btree](/assets/image/article/concept/btree.png)
+
+
+### B+ Tree
+
+A B+ tree is a variant of the B-tree and is a commonly used index data structure. Compared with the B-tree, the leaf nodes of the B+ tree only contain indexes, not data, all leaf nodes are on the same level, and leaf nodes are connected by pointers. Since the node only contains the index, under the same block size, the B+ tree can store more indexes, reduce the number of layers of the tree, and improve the query efficiency. Since the leaf nodes are connected by pointers, it can support range queries, and the query speed is much faster than the B-tree.
+
+::: info Characteristics of B+ Tree:
+- All leaf nodes are on the same level.
+- Non-leaf nodes only contain indexes, not data.
+- Leaf nodes are connected by pointers.
+- Leaf nodes contain all data.
+- For the same amount of data, the height of the B+ tree is lower than the B-tree.
+:::
+
+![b+tree](/assets/image/article/concept/bplustree.png)
+
+::: warning Differences between B-Tree and B+ Tree
+
+|                                           |                                        B-Tree                                        |                                        B+ Tree                                         |
+| :---------------------------------------: | :----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
+|        **Data Pointers and Keys**         |           All internal nodes and leaf nodes contain data pointers and keys           |    Only leaf nodes contain data pointers and keys, internal nodes only contain keys    |
+|            **Duplicate Keys**             |                             There are no duplicate keys                              |           Duplicate keys exist, all internal nodes also exist in the leaves            |
+|           **Leaf Node Linking**           |                       Leaf nodes are not linked to each other                        |                          Leaf nodes are linked to each other                           |
+|           **Sequential Access**           | Sequential access of nodes is not possible, range queries require in-order traversal | All nodes exist in the leaves, so they can be accessed sequentially like a linked list |
+|             **Search Speed**              |                        The speed of searching keys is slower                         |                               The search speed is faster                               |
+| **Height for Specific Number of Entries** |         For a specific number of entries, the height of the B-Tree is larger         |   For the same number of entries, the height of the B+ Tree is less than the B-Tree    |
+
 :::
