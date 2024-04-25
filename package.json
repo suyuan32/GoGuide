@@ -19,7 +19,6 @@
     "vuepress-theme-hope": "2.0.0-rc.37"
   },
   "dependencies": {
-    "@node-rs/jieba": "^1.10.3",
-    "vuepress-plugin-pwa2": "2.0.0-rc.24"
+    "@node-rs/jieba": "^1.10.3"
   }
 }
