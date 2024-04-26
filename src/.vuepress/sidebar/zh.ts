@@ -24,16 +24,16 @@ export const zhSidebar = sidebar({
               icon: "zondicons:network",
               prefix: "network/",
               collapsible: true,
-              children: "structure"
+              children: "structure",
             },
             {
               text: "数据库",
               icon: "material-symbols:database-outline",
               prefix: "database/",
               collapsible: true,
-              children: "structure"
-            }
-          ]
+              children: "structure",
+            },
+          ],
         },
         {
           text: "面试题",
@@ -45,9 +45,16 @@ export const zhSidebar = sidebar({
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
               collapsible: true,
-              children: "structure"
-            }
-          ]
+              children: "structure",
+            },
+          ],
+        },
+        {
+          text: "开发工具",
+          icon: "bi:tools",
+          prefix: "devtools/",
+          collapsible: true,
+          children: "structure",
         },
       ],
     },

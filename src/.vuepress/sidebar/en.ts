@@ -24,16 +24,16 @@ export const enSidebar = sidebar({
               icon: "zondicons:network",
               prefix: "network/",
               collapsible: true,
-              children: "structure"
+              children: "structure",
             },
             {
               text: "Database",
               icon: "material-symbols:database-outline",
               prefix: "database/",
               collapsible: true,
-              children: "structure"
-            }
-          ]
+              children: "structure",
+            },
+          ],
         },
         {
           text: "Interview Questions",
@@ -45,10 +45,17 @@ export const enSidebar = sidebar({
               icon: "grommet-icons:golang",
               prefix: "golang/basic/",
               collapsible: true,
-              children: "structure"
-            }
-          ]
-        },    
+              children: "structure",
+            },
+          ],
+        },
+        {
+          text: "Dev Tools",
+          icon: "bi:tools",
+          prefix: "devtools/",
+          collapsible: true,
+          children: "structure",
+        },
       ],
     },
   ],
