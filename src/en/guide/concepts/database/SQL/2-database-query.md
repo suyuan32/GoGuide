@@ -132,10 +132,10 @@ SELECT age FROM users WHERE EXISTS (SELECT age FROM users WHERE age > 2 );
 
 ## Common Aggregate Functions
 
-| Function    | Description   | Remarks                                                                 |
-| ----------- | ------------- | ----------------------------------------------------------------------- |
-| **count()** | Count         | Only counts non-empty rows                                              |
-| **sum()**   | Sum           | Only counts non-empty rows, True is treated as 1, False is treated as 0 |
-| **max()**   | Maximum Value | For time fields, it represents the most recent date                     |
-| **min()**   | Minimum Value | For time fields, it represents the earliest date                        |
-| **avg()**   | Average       | Only counts non-empty rows                                              |
+| Function    | Description   | Remarks                                                                                         |
+| ----------- | ------------- | ----------------------------------------------------------------------------------------------- |
+| **count()** | Count         | Only counts non-empty rows, use `count(*)` or `count(1)` to count all rows including empty rows |
+| **sum()**   | Sum           | Only counts non-empty rows, True is treated as 1, False is treated as 0                         |
+| **max()**   | Maximum Value | For time fields, it represents the most recent date                                             |
+| **min()**   | Minimum Value | For time fields, it represents the earliest date                                                |
+| **avg()**   | Average       | Only counts non-empty rows                                                                      |
