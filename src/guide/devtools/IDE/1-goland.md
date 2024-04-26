@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Goland
+icon: devicon-plain:goland
 ---
 
 ## Goland

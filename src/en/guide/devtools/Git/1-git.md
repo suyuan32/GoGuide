@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Git
+icon: bx:bx-git-branch
 ---
 
 ::: tip

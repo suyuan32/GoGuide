@@ -1,6 +1,7 @@
 ---
 order: 2
 title: VsCode
+icon: akar-icons:vscode-fill
 ---
 
 ## VsCode
