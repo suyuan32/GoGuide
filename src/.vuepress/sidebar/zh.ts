@@ -50,6 +50,13 @@ export const zhSidebar = sidebar({
           ],
         },
         {
+          text: "开发规范",
+          icon: "carbon:rule-draft",
+          prefix: "standard/",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "开发工具",
           icon: "bi:tools",
           prefix: "devtools/",

@@ -50,6 +50,13 @@ export const enSidebar = sidebar({
           ],
         },
         {
+          text: "Development Specifications",
+          icon: "carbon:rule-draft",
+          prefix: "standard/",
+          collapsible: true,
+          children: "structure",
+        },
+        {
           text: "Dev Tools",
           icon: "bi:tools",
           prefix: "devtools/",
