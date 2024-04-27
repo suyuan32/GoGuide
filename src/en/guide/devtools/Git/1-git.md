@@ -34,6 +34,7 @@ As a competent programmer, mastering Git is a fundamental requirement.
 
 ## Steps for Committing Code
 
+::: center
 @startuml
 
 start
@@ -45,3 +46,4 @@ start
 
 stop
 @enduml
+:::

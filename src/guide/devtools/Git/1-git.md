@@ -35,6 +35,7 @@ icon: bx:bx-git-branch
 
 ## 提交代码步骤
 
+::: center
 @startuml
 
 start
@@ -46,3 +47,4 @@ start
 
 stop
 @enduml
+:::
