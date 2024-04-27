@@ -10,7 +10,9 @@
 
 # Go Guide
 
-Go Guide is an open-source Golang learning material knowledge base, mainly used to share Golang-related knowledge, concepts, interview questions, and learning materials.
+Golang one-stop learning website provides Golang relevant knowledge. It also provides Golang interview questions for developers to learn and apply for jobs.
+
+### **If it is useful to you, please give us a star! ✨**
 
 > Reproduction notice: Most of the content in the knowledge base is original content, and reproduction requires contacting the administrator.
 
