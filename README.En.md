@@ -31,9 +31,17 @@ Go Guide is an open-source Golang learning material knowledge base, mainly used 
 
 ### Computer Network
 - [Basic](https://goguide.ryansu.tech/en/guide/concepts/network/network.html)
+- [IP](https://goguide.ryansu.tech/guide/concepts/network/2-ip.html)
+- [TCP/UDP](https://goguide.ryansu.tech/guide/concepts/network/3-tcp-udp.html)
+- [DNS](https://goguide.ryansu.tech/guide/concepts/network/4-dns.html)
+- [ARP](https://goguide.ryansu.tech/guide/concepts/network/5-arp.html)
+- [NAT](https://goguide.ryansu.tech/guide/concepts/network/6-nat.html)
 
 ### Database
-- [Basic](https://goguide.ryansu.tech/en/guide/concepts/database/1-database-basic.html)
+- [Basic](https://goguide.ryansu.tech/guide/concepts/database/SQL/1-database-basic.html)
+- [Query](https://goguide.ryansu.tech/guide/concepts/database/SQL/2-database-query.html)
+- [Index](https://goguide.ryansu.tech/guide/concepts/database/SQL/3-database-index.html)
+- [Transaction](https://goguide.ryansu.tech/guide/concepts/database/SQL/4-database-transaction.html)
 
 ## Interview Questions
 
@@ -41,6 +49,19 @@ Go Guide is an open-source Golang learning material knowledge base, mainly used 
 
 - [Basic](https://goguide.ryansu.tech/en/guide/interview/golang/basic/1-basic.html)
 - [Medium](https://goguide.ryansu.tech/en/guide/interview/golang/basic/2-medium.html)
+
+## Dev Tools
+
+### IDE
+
+- [Goland](https://goguide.ryansu.tech/guide/devtools/IDE/1-goland.html)
+- [VsCode](https://goguide.ryansu.tech/guide/devtools/IDE/2-vscode.html)
+
+## Git
+- [Git](https://goguide.ryansu.tech/guide/devtools/Git/1-git.html)
+  
+## Docker
+- [Docker](http://localhost:8080/guide/devtools/Docker/1-docker.html)
 
 ### Local Preview
 
