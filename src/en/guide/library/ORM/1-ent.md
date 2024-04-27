@@ -2,6 +2,10 @@
 order: 1
 title: Ent
 icon: material-symbols:database-outline
+head:
+  - - meta
+    - name: keywords
+      content: ent, go, orm, database, graph, schema, code generation
 ---
 
 ## Introduction to Ent

@@ -2,6 +2,10 @@
 order: 2
 title: VsCode
 icon: akar-icons:vscode-fill
+head:
+  - - meta
+    - name: keywords
+      content: VsCode, IDE, Go, 插件
 ---
 
 ## VsCode

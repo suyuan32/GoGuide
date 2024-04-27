@@ -1,6 +1,10 @@
 ---
 order: 4
 title: DNS
+head:
+  - - meta
+    - name: keywords
+      content: DNS, 域名解析, 域名系统, DNS 攻击, DNS 服务器
 ---
 
 ## 介绍

@@ -1,6 +1,10 @@
 ---
 order: 1
 title: 'Keywords'
+head:
+  - - meta
+    - name: keywords
+      content: golang, reserved keywords, const, func, import, package, type, var, chan, interface, map, struct, break, case, continue, default, else, fallthrough, for, goto, if, range, return, select, switch, defer
 ---
 
 ## Keywords

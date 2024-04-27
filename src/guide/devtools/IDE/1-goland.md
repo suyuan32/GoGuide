@@ -2,6 +2,10 @@
 order: 1
 title: Goland
 icon: devicon-plain:goland
+head:
+  - - meta
+    - name: keywords
+      content: goland, ide, vscode, jetbrains
 ---
 
 ## Goland

@@ -1,6 +1,10 @@
 ---
 order: 3
 title: 'Operators'
+head:
+  - - meta
+    - name: keywords
+      content: operators, golang, arithmetic operators, relational operators, logical operators, bitwise operators, assignment operators, other operators
 ---
 
 ## Arithmetic Operators

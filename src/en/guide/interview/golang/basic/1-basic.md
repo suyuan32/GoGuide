@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "Basic"
+head:
+  - - meta
+    - name: keywords
+      content: golang, basic, data types, variables, constants, pointers, interview questions, interview
 ---
 
 ## Pointer

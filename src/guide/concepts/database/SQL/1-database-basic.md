@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "基础"
+head:
+  - - meta
+    - name: keywords
+      content: 数据库, SQL, 基础, 关系型数据库, 非关系型数据库, 关系键, 主键, 超键, 候选键, 外键
 ---
 
 ## 关系键

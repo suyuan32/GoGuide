@@ -2,6 +2,10 @@
 order: 2
 title: GORM
 icon: material-symbols:database-outline
+head:
+  - - meta
+    - name: keywords
+      content: golang, gorm, orm, 数据库, 数据库操作
 ---
 
 ## GORM 介绍

@@ -2,6 +2,10 @@
 order: 1
 title: Docker
 icon: mdi:docker
+head:
+  - - meta
+    - name: keywords
+      content: docker, container, image, dockerfile, docker-compose
 ---
 
 ## Introduction to Docker

@@ -1,6 +1,10 @@
 ---
 order: 5
 title: "Map (集合)"
+head:
+  - - meta
+    - name: keywords
+      content: golang, map, 集合, 创建map, 遍历map, 删除map
 ---
 
 ## 创建 Map

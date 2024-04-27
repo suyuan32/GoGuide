@@ -1,6 +1,10 @@
 ---
 order: 1
 title: Golang Dev Specifications
+head:
+  - - meta
+    - name: keywords
+      content: golang, development, specifications
 ---
 
 

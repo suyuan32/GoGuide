@@ -2,6 +2,10 @@
 order: 1
 title: Git
 icon: bx:bx-git-branch
+head:
+  - - meta
+    - name: keywords
+      content: git, git命令, git常用命令, git基础, 提交代码
 ---
 
 ::: tip

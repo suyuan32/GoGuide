@@ -1,6 +1,10 @@
 ---
 order: 6
 title: "Slices"
+head:
+  - - meta
+    - name: keywords
+      content:  golang, slice, create slice, slice slicing, length and capacity
 ---
 
 ## Creating Slices

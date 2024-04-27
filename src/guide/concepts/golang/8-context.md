@@ -1,6 +1,10 @@
 ---
 order: 8
 title: "Context"
+head:
+  - - meta
+    - name: keywords
+      content: golang, context, goroutine, 超时管理, 数据传递, 终止协程, Done, Deadline, Err, Value
 ---
 
 ## 介绍

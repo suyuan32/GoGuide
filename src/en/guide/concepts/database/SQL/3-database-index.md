@@ -1,6 +1,10 @@
 ---
 order: 3
 title: Index
+head:
+  - - meta
+    - name: keywords
+      content: database, SQL, index, advantages, disadvantages
 ---
 
 ::: info 

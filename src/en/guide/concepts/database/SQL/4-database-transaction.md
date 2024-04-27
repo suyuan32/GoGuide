@@ -1,6 +1,10 @@
 ---
 order: 4
 title: Transaction
+head:
+  - - meta
+    - name: keywords
+      content: transaction, database transaction, transaction isolation level, transaction properties
 ---
 
 ## Isolation Levels

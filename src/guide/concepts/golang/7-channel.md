@@ -1,6 +1,10 @@
 ---
 order: 7
 title: "信道"
+head:
+  - - meta
+    - name: keywords
+      content: 信道, channel, golang, 创建信道, 发送数据, 接收数据, 关闭信道
 ---
 
 ## 介绍

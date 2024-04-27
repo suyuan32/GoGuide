@@ -1,6 +1,10 @@
 ---
 order: 3
 title: '运算符'
+head:
+  - - meta
+    - name: keywords
+      content: 运算符, golang, 算术运算符, 关系运算符, 逻辑运算符, 位运算符, 赋值运算符, 其他运算符
 ---
 
 

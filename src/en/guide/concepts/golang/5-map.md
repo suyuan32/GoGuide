@@ -1,6 +1,10 @@
 ---
 order: 5
 title: "Map"
+head:
+  - - meta
+    - name: keywords
+      content: golang, map, collection, create map, traverse map, delete map
 ---
 
 ## Creating a Map

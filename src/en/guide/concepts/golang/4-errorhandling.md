@@ -1,6 +1,10 @@
 ---
 order: 4
 title: 'Error Handling'
+head:
+  - - meta
+    - name: keywords
+      content: error handling, golang, error
 ---
 
 ## Interface

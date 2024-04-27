@@ -1,6 +1,10 @@
 ---
 order: 1
 title: Golang 开发规范
+head:
+  - - meta
+    - name: keywords
+      content: golang, 开发规范, 规范, 代码规范
 ---
 
 ::: info 来源 

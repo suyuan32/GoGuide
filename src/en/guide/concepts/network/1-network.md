@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "Basic"
+head:
+  - - meta
+    - name: keywords
+      content: network, OSI, TCP/IP, IP, TCP, UDP, HTTP, HTTPS
 ---
 
 ### OSI Seven-Layer Model

@@ -1,6 +1,10 @@
 ---
 order: 2
 title: Query
+head:
+  - - meta
+    - name: keywords
+      content: SQL, SELECT, ORDER BY, LIMIT, WHERE
 ---
 
 

@@ -1,6 +1,10 @@
 ---
 order: 4
 title: '错误处理'
+head:
+  - - meta
+    - name: keywords
+      content: 错误处理, golang, error
 ---
 
 ## 接口

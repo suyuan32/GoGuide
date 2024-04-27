@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "基础"
+head:
+  - - meta
+    - name: keywords
+      content: 网络, OSI七层模型, TCP/IP四层模型, IP地址, 端口, DNS, HTTP, HTTPS, TCP, UDP
 ---
 
 ### OSI七层模型

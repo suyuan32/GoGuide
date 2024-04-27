@@ -1,6 +1,10 @@
 ---
 order: 2
 title: "IP"
+head:
+  - - meta
+    - name: keywords
+      content: IP, Internet Protocol, TCP/IP, IPv4, IPv6, Header
 ---
 
 ## IP

@@ -1,6 +1,10 @@
 ---
 order: 2
 title: 查询
+head:
+  - - meta
+    - name: keywords
+      content: SQL, 查询, SELECT, ORDER, LIMIT, WHERE
 ---
 
 ## SELECT 选择

@@ -2,6 +2,10 @@
 order: 1
 title: Ent
 icon: material-symbols:database-outline
+head:
+  - - meta
+    - name: keywords
+      content: golang, ent, orm, 数据库, 数据库模型
 ---
 
 ## Ent 介绍

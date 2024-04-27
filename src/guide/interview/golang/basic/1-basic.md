@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "基础"
+head:
+  - - meta
+    - name: keywords
+      content: golang, 基础, 数据类型, 变量, 常量, 指针, 面试题, 面试
 ---
 
 

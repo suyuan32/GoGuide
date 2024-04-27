@@ -1,6 +1,10 @@
 ---
 order: 2
 title: "进阶"
+head:
+  - - meta
+    - name: keywords
+      content: golang, 进阶, 协程, channel, context, 面试题, 面试
 ---
 
 ### 使用过 `context` 吗？ `context` 有哪些使用场景？

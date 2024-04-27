@@ -1,6 +1,10 @@
 ---
 order: 3
 title: 索引
+head:
+  - - meta
+    - name: keywords
+      content: 索引, 数据库索引, 索引类型, 索引优缺点
 ---
 
 ::: info 

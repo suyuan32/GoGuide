@@ -1,6 +1,10 @@
 ---
 order: 4
 title: 事务
+head:
+  - - meta
+    - name: keywords
+      content: 事务, 数据库事务, 事务隔离级别, 事务特性
 ---
 
 ## 隔离级别

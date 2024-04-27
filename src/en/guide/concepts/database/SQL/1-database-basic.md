@@ -1,6 +1,10 @@
 ---
 order: 1
 title: "Basic"
+head:
+  - - meta
+    - name: keywords
+      content: database, SQL, basic, relational database, non-relational database, relationship key, primary key, super key, candidate key, foreign key
 ---
 
 ## Relationship Keys

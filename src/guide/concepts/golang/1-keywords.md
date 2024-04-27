@@ -1,6 +1,10 @@
 ---
 order: 1
 title: '保留关键字'
+head:
+  - - meta
+    - name: keywords
+      content: golang,保留关键字,const,func,import,package,type,var,chan,interface,map,struct,break,case,continue,default,else,fallthrough,for,goto,if,range,return,select,switch,defer
 ---
 
 ## 保留关键字

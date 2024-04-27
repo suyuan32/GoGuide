@@ -1,6 +1,10 @@
 ---
 order: 2
 title: "Medium"
+head:
+  - - meta
+    - name: keywords
+      content: golang, medium, interview, interview questions
 ---
 
 ### Have you used `context`? What are the use cases for `context`?

@@ -1,6 +1,10 @@
 ---
 order: 7
 title: "Channel"
+head:
+  - - meta
+    - name: keywords
+      content: channel, golang, goroutine, concurrency, create channel, send data, receive data, close channel
 ---
 
 ## Introduction

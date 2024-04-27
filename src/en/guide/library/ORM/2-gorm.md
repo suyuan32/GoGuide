@@ -2,6 +2,10 @@
 order: 2
 title: GORM
 icon: material-symbols:database-outline
+head:
+  - - meta
+    - name: keywords
+      content: golang, orm, gorm, database, sql
 ---
 
 ## Introduction to GORM

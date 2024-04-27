@@ -1,6 +1,10 @@
 ---
 order: 2
 title: '数据类型'
+head:
+  - - meta
+    - name: keywords
+      content: 数据类型, golang, 整数, 浮点数, 复数, 布尔, 字符串, 数组, 切片, 映射, 通道, 结构体, 接口, 函数
 ---
 
 ## 整数 (int)

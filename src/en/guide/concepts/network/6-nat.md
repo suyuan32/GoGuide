@@ -1,6 +1,10 @@
 ---
 order: 6
 title: NAT
+head:
+  - - meta
+    - name: keywords
+      content: NAT, Network Address Translation
 ---
 
 Translate to English:

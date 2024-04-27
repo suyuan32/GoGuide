@@ -1,6 +1,10 @@
 ---
 order: 2
 title: 'Data Type'
+head:
+  - - meta
+    - name: keywords
+      content: data type, golang, integer, float, complex, boolean, string, array, slice, map, channel, struct, interface, function
 ---
 
 ## Integers (int)

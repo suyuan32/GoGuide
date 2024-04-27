@@ -1,6 +1,10 @@
 ---
 order: 4
 title: DNS
+head:
+  - - meta
+    - name: keywords
+      content: DNS, Domain Name System, DNS resolution, DNS cache, DNS server, DNS record, DNS query, DNS zone, DNSSEC, DNS attack
 ---
 
 ## Introduction

@@ -1,6 +1,10 @@
 ---
 order: 3
 title: "TCP/UDP"
+head:
+  - - meta
+    - name: keywords
+      content: tcp, udp, network, transmission control protocol, user datagram protocol
 ---
 ### TCP
 

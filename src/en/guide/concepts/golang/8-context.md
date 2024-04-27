@@ -1,6 +1,10 @@
 ---
 order: 8
 title: "Context"
+head:
+  - - meta
+    - name: keywords
+      content: golang context, context interface, context management, context timeout, context termination
 ---
 
 ## Introduction

@@ -1,6 +1,10 @@
 ---
 order: 6
 title: "切片"
+head:
+  - - meta
+    - name: keywords
+      content: golang, 切片, slice, 创建切片, 切片截取, 长度及容量
 ---
 
 ## 创建切片
