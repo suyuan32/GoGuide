@@ -6,7 +6,7 @@ icon: material-symbols:database-outline
 
 ## Introduction to GORM
 
-GORM is a powerful ORM library that is highly popular. It offers a wide range of features, including chainable queries, preloading, transactions, and model associations.
+[GORM](https://gorm.io) is a powerful ORM library that is highly popular. It offers a wide range of features, including chainable queries, preloading, transactions, and model associations.
 
 - Full-featured ORM
 - Associations (Has One, Has Many, Belongs To, Many To Many, Polymorphism, Single Table Inheritance)
