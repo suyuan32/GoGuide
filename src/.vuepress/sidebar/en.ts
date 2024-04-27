@@ -78,6 +78,21 @@ export const enSidebar = sidebar({
             },
           ],
         },
+        {
+          text: "Useful Libraries",
+          icon: "streamline:module-puzzle-1",
+          prefix: "library/",
+          collapsible: true,
+          children: [
+            {
+              text: "ORM",
+              icon: "material-symbols:database-outline",
+              prefix: "ORM/",
+              collapsible: true,
+              children: "structure",
+            },
+          ],
+        },
       ],
     },
   ],
