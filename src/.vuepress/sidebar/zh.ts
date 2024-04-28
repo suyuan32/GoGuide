@@ -112,6 +112,13 @@ export const zhSidebar = sidebar({
               collapsible: true,
               children: "structure",
             },
+            {
+              text: "工具类库",
+              icon: "iconoir:tools",
+              prefix: "Util/",
+              collapsible: true,
+              children: "structure",
+            },
           ],
         },
       ],

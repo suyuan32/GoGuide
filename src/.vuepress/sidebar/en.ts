@@ -112,6 +112,13 @@ export const enSidebar = sidebar({
               collapsible: true,
               children: "structure",
             },
+            {
+              text: "Tool Libraries",
+              icon: "iconoir:tools",
+              prefix: "Util/",
+              collapsible: true,
+              children: "structure",
+            },
           ],
         },
       ],
