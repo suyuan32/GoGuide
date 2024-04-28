@@ -1,6 +1,7 @@
 ---
 order: 6
 title: "Slices"
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

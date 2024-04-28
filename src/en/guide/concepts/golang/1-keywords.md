@@ -1,6 +1,7 @@
 ---
 order: 1
 title: 'Keywords'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

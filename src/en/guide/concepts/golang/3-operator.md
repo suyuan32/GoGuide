@@ -1,6 +1,7 @@
 ---
 order: 3
 title: 'Operators'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

@@ -1,6 +1,7 @@
 ---
 order: 7
 title: "Channel"
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

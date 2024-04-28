@@ -1,6 +1,7 @@
 ---
 order: 4
 title: 'Error Handling'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

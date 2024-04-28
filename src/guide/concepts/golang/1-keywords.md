@@ -1,6 +1,7 @@
 ---
 order: 1
 title: '保留关键字'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

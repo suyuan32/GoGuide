@@ -1,6 +1,7 @@
 ---
 order: 2
 title: 'Data Type'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

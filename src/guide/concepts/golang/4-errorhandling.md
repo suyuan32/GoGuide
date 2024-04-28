@@ -1,6 +1,7 @@
 ---
 order: 4
 title: '错误处理'
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

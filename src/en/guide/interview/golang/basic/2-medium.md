@@ -1,6 +1,7 @@
 ---
 order: 2
 title: "Medium"
+icon: line-md:sunny-filled-loop-to-moon-filled-loop-transition
 head:
   - - meta
     - name: keywords

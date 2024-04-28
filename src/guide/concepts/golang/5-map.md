@@ -1,6 +1,7 @@
 ---
 order: 5
 title: "Map (集合)"
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords
