@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Go Zero
+icon: carbon:microservices-1
 head:
   - - meta
     - name: keywords

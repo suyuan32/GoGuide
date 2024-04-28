@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Golang Dev Specifications
+icon: file-icons:go-old
 head:
   - - meta
     - name: keywords

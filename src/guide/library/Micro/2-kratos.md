@@ -1,6 +1,7 @@
 ---
 order: 2
 title: Kratos
+icon: carbon:microservices-1
 head:
   - - meta
     - name: keywords

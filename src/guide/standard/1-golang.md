@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Golang 开发规范
+icon: file-icons:go-old
 head:
   - - meta
     - name: keywords

@@ -1,6 +1,7 @@
 ---
 order: 1
 title: Gin
+icon: streamline:web
 head:
   - - meta
     - name: keywords
