@@ -2,6 +2,10 @@
 order: 20
 title: GMP Scheduler
 icon: line-md:sunny-filled-loop-to-moon-filled-loop-transition
+head:
+  - - meta
+    - name: keywords
+      content: golang, goroutine, process, thread, scheduler
 ---
 
 ## Scheduler

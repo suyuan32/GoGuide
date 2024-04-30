@@ -2,6 +2,10 @@
 order: 20
 title: GMP 调度器
 icon: line-md:sunny-filled-loop-to-moon-filled-loop-transition
+head:
+  - - meta
+    - name: keywords
+      content: golang, goroutine, process, thread, scheduler, GMP, GMP 调度器, Go 调度
 ---
 
 ## Scheduler
