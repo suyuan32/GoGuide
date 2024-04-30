@@ -112,7 +112,7 @@ The GMP model is the core model of the Go language scheduler. It serves as the f
 | Preemptive Scheduling | In goroutines, a goroutine must voluntarily yield the CPU for the next goroutine to use it. Goroutines in Go are limited to using the CPU for a maximum of 10ms, after which they are preempted to allow other goroutines to run. This prevents any single goroutine from monopolizing the CPU for an extended period.                                                                                                                                       |
 | Thread Reuse          | Go's scheduler reuses threads instead of creating new ones each time. This reduces the overhead of thread creation and destruction, improving performance. <br>- **Work Stealing**: When an `M` has no runnable `G`s, it tries to steal half of the `G`s from another `P`'s local queue instead of destroying the `M`. <br>- **Handoff Mechanism**: When a `G` blocks due to a system call, the associated `M` releases its bound `P` for other `M`s to use. |
 | Parallelism           | By configuring the number of `P`s using `GOMAXPROCS`, Go achieves parallel execution. The number of `P`s determines the degree of parallelism, and setting it equal to the number of CPU cores achieves maximum parallelism.                                                                                                                                                                                                                                 |
-| Global Queue          | If an `M` cannot steal a `G` from another `M`'s bound `P`, it retrieves a `G` from the global queue and places it in its local queue.                                                                                                                                                                                                                                                                                                                        |
+| Global Queue          | When there is no executable `G` in the local queue, `M` will first go to the global queue to try to obtain `G`. If there is no `G` to be run in the global queue, `M` will try to steal it from the local queue of other `P` to take `G`                                                                                                                                                                                                                     |
 
 :::
 
@@ -128,8 +128,7 @@ The GMP model is the core model of the Go language scheduler. It serves as the f
    - The `P` acquires a `G` and executes it within an `M`.
    - If the `G` blocks due to a system call, the `M` is put to sleep, and another `M` takes over the `P`. If no `M` is available, a new `M` is created.
 3. **Fetching a `G`**:
-   - If the local queue is empty, the `M` attempts to steal a `G` from another `P`'s local queue.
-   - If stealing fails, the `M` retrieves a `G` from the global queue.
+   - If `G` in the local queue has been executed, try to obtain `G` from the global queue. If there is no executable `G` in the global queue, steal `G` from the local queue of other `P`
 
 :::
 
