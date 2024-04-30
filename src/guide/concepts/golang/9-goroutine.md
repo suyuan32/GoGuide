@@ -114,7 +114,7 @@ func main() {
 }
 
 func sendData(ch chan string) {
-	ch <- "BiliBili"
+	ch <- "Bilibili"
 	ch <- "Youtube"
 }
 
@@ -126,7 +126,47 @@ func getData(ch chan string) {
 	}
 }
 
-// 结果: BiliBili Youtube
+// 结果: Bilibili Youtube
 ```
+
+
+## Goroutine 字段介绍
+
+::: info
+[源码](https://github.com/golang/go/blob/16ce8b3925deaeb72541ee96b6ee23a08fc21dea/src/runtime/runtime2.go#L422)
+:::
+
+| 字段         | 说明                          |
+| ------------ | ----------------------------- |
+| goid         | Goroutine ID, 唯一标识符      |
+| status       | Goroutine 状态， 如运行和阻塞 |
+| stack        | Goroutine 栈空间              |
+| gopc         | Goroutine PC 寄存器           |
+| m            | Goroutine 所在的 M            |
+| locked       | Goroutine 是否被锁定          |
+| sched        | Goroutine 调度器              |
+| atomicstatus | Goroutine 原子状态            |
+
+::: details 例子
+使用 runtime 包可以获取当前 Goroutine 的 ID：
+```go
+goroutineID := runtime.GoID()
+```
+:::
+
+## Goroutine 的9种状态类型
+
+| **字段**          | **编号** | **描述**                                                                                                                                                                                                                                                                                                  |
+| ----------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Gidle            | 0        | 表示此 Goroutine 刚刚分配并且尚未初始化。                                                                                                                                                                                                                                                                 |
+| _Grunnable        | 1        | 表示此 Goroutine 在运行队列中。它当前不执行用户代码。堆栈不属于它。                                                                                                                                                                                                                                       |
+| _Grunning         | 2        | 表示此 Goroutine 可能执行用户代码。堆栈由此 Goroutine 拥有。它不在运行队列中。它被分配给一个 M 和一个 P。                                                                                                                                                                                                 |
+| _Gsyscall         | 3        | 表示此 Goroutine 正在执行系统调用。它不执行用户代码。堆栈由此 Goroutine 拥有。它不在运行队列中。它被分配给一个 M。                                                                                                                                                                                        |
+| _Gwaiting         | 4        | 表示此 Goroutine 在运行时被阻塞。它不执行用户代码。它不在运行队列中，但应该在某个地方记录（例如，一个通道等待队列），以便在必要时可以准备就绪。堆栈不属于它，除非在适当的通道锁下，通道操作可能读取或写入堆栈的某些部分。否则，在 Goroutine 进入 _Gwaiting 后访问堆栈是不安全的（例如，它可能会被移动）。 |
+| _Gmoribund_unused | 5        | 目前未使用，但在 gdb 脚本中硬编码。                                                                                                                                                                                                                                                                       |
+| _Gdead            | 6        | 表示此 Goroutine 当前未使用。它可能刚刚退出，位于空闲列表上，或者刚刚初始化。它不执行用户代码。它可能具有堆栈，也可能没有。G 和其堆栈（如果有）由正在退出 G 的 M 或从空闲列表中获取 G 的 M 拥有。                                                                                                         |
+| _Genqueue_unused  | 7        | 目前未使用。                                                                                                                                                                                                                                                                                              |
+| _Gcopystack       | 8        | 表示此 Goroutine 的堆栈正在移动。它不执行用户代码，也不在运行队列中。堆栈由将其放入 _Gcopystack 的 Goroutine 拥有。                                                                                                                                                                                       |
+| _Gscan            | 0x1000   | 与除 _Grunning 之外的其他状态组合表示 GC 正在扫描堆栈。Goroutine 不执行用户代码，堆栈由设置 _Gscan 位的 Goroutine 拥有。                                                                                                                                                                                  |
 
 

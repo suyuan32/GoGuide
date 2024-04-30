@@ -115,7 +115,7 @@ func main() {
 }
 
 func sendData(ch chan string) {
-	ch <- "BiliBili"
+	ch <- "Bilibili"
 	ch <- "Youtube"
 }
 
@@ -127,5 +127,44 @@ func getData(ch chan string) {
 	}
 }
 
-// Output: BiliBili Youtube
+// Output: Bilibili Youtube
 ```
+
+## Goroutine Field Descriptions
+
+::: info
+[Source Code](https://github.com/golang/go/blob/16ce8b3925deaeb72541ee96b6ee23a08fc21dea/src/runtime/runtime2.go#L422)
+:::
+
+| Field        | Description                                  |
+| ------------ | -------------------------------------------- |
+| goid         | Goroutine ID, a unique identifier            |
+| status       | Goroutine status, such as running or blocked |
+| stack        | Goroutine stack space                        |
+| gopc         | Goroutine PC register                        |
+| m            | The M where the Goroutine resides            |
+| locked       | Whether the Goroutine is locked              |
+| sched        | Goroutine scheduler                          |
+| atomicstatus | Goroutine atomic status                      |
+
+::: details Example
+You can use the `runtime` package to obtain the current Goroutine ID:
+```go
+goroutineID := runtime.GoID()
+```
+:::
+
+## 9 Goroutine Status Types
+
+| **Field**         | **Number** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ----------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _Gidle            | 0          | Indicates that this Goroutine was just allocated and has not yet been initialized.                                                                                                                                                                                                                                                                                                                                                                      |
+| _Grunnable        | 1          | Represents a Goroutine on a run queue. It is not currently executing user code. The stack is not owned.                                                                                                                                                                                                                                                                                                                                                 |
+| _Grunning         | 2          | Indicates that this Goroutine may execute user code. The stack is owned by this Goroutine. It is not on a run queue. It is assigned an M and a P.                                                                                                                                                                                                                                                                                                       |
+| _Gsyscall         | 3          | Represents a Goroutine executing a system call. It is not executing user code. The stack is owned by this Goroutine. It is not on a run queue. It is assigned an M.                                                                                                                                                                                                                                                                                     |
+| _Gwaiting         | 4          | Represents a Goroutine blocked in the runtime. It is not executing user code. It is not on a run queue, but should be recorded somewhere (e.g., a channel wait queue) so it can be ready()d when necessary. The stack is not owned, except that a channel operation may read or write parts of the stack under the appropriate channel lock. Otherwise, it is not safe to access the stack after a Goroutine enters _Gwaiting (e.g., it may get moved). |
+| _Gmoribund_unused | 5          | Currently unused, but hardcoded in gdb scripts.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| _Gdead            | 6          | Indicates that this Goroutine is currently unused. It may have just exited, be on a free list, or be just being initialized. It is not executing user code. It may or may not have a stack allocated. The G and its stack (if any) are owned by the M that is exiting the G or that obtained the G from the free list.                                                                                                                                  |
+| _Genqueue_unused  | 7          | Currently unused.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| _Gcopystack       | 8          | Indicates that this Goroutine's stack is being moved. It is not executing user code and is not on a run queue. The stack is owned by the Goroutine that put it in _Gcopystack.                                                                                                                                                                                                                                                                          |
+| _Gscan            | 0x1000     | When combined with any of the above states other than _Grunning, it indicates that GC is scanning the stack. The Goroutine is not executing user code, and the stack is owned by the Goroutine that set the _Gscan bit.                                                                                                                                                                                                                                 |
