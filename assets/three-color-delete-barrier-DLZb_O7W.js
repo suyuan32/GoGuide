@@ -1,0 +1,1 @@
+const e="/assets/image/article/concept/three-color-gc.png",t="/assets/image/article/concept/three-color-gc-error.png",r="/assets/image/article/concept/three-color-gc-error-prevent.png",s="/assets/image/article/concept/three-color-write-prevent.png",c="/assets/image/article/concept/three-color-delete-barrier.png";export{e as _,t as a,r as b,s as c,c as d};
