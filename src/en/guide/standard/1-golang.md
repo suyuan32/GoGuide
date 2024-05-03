@@ -262,8 +262,6 @@ import (
 </td></tr>
 </tbody></table>
 
-Certainly! Here's the translation of your Go code snippets into English:
-
 ### Import Aliases
 
 When the package name you're importing doesn't match the last word in the import path, it's recommended to use an alias. You can also use an alias if the package name is too long. However, in most cases, it's best to avoid aliases unless there's a package name conflict.
@@ -629,8 +627,6 @@ type Client struct {
 
 </td></tr>
 </tbody></table>
-
-Certainly! Here's the translation of your Go code snippets into English:
 
 ### `nil` Is a Valid Slice
 
