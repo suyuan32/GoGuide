@@ -208,8 +208,6 @@ type Person struct {
 
 :::
 
-Here is the translation into English:
-
 ## Control Flow
 
 ### **if else**

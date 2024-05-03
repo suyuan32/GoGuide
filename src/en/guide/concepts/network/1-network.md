@@ -82,8 +82,6 @@ HTTP 1.1 additionally supports 6 request methods
 
 ::: details Common Status Codes
 
-Sure, here is the English translation of your text:
-
 | HTTP Status Code | Name                          | Description                                                                                                                                                                                                                                                                                              |
 | ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 100              | Continue                      | **Continue** indicates that the client can continue to submit the request                                                                                                                                                                                                                                |

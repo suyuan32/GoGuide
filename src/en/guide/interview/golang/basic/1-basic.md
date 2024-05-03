@@ -255,8 +255,6 @@ Since the value that the byte type can represent is limited, there are only 2^8=
 
 :::
 
-Here is the English translation of your text:
-
 ### What are deep copy and shallow copy in golang?
 ::: details Answer
 
