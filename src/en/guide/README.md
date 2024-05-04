@@ -13,3 +13,13 @@ If you have good Golang-related knowledge points, interview questions, tools, et
 
 Requirements: The content submitted in PRs must be original; direct reposts are not accepted.
 :::
+
+::: important Difficulty Level
+
+| Icon                                                                        | Difficulty   |
+| --------------------------------------------------------------------------- | ------------ |
+| <HopeIcon icon="line-md:star-filled"/>                                      | Beginner     |
+| <HopeIcon icon="line-md:sunny-filled-loop-to-moon-filled-loop-transition"/> | Intermediate |
+| <HopeIcon icon="line-md:sun-rising-twotone-loop"/>                          | Advanced     |
+
+:::
