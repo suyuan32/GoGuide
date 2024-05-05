@@ -83,7 +83,6 @@ func main() {
 
 :::
 
-Certainly! Here's the translation of the given Markdown document into English:
 
 ## Read-Write Lock (RWMutex)
 
