@@ -1,6 +1,7 @@
 ---
 order: 3
 title: 索引
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords

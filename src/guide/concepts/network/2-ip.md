@@ -1,6 +1,7 @@
 ---
 order: 2
 title: "IP"
+icon: line-md:star-filled
 head:
   - - meta
     - name: keywords
