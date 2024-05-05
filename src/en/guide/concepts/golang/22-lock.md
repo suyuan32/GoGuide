@@ -1,11 +1,11 @@
 ---
 order: 22
-title: 锁
+title: Lock
 icon: line-md:sunny-filled-loop-to-moon-filled-loop-transition
 head:
   - - meta
     - name: keywords
-      content: Go, Golang, 锁，Lock, 互斥锁，读写锁，sync
+      content: Go, Golang, Lock, sync, mutex, read-write lock
 ---
 
 
