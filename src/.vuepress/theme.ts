@@ -69,6 +69,35 @@ export default hopeTheme({
     //   categoryId: "DIC_kwDOG_Pt2M4COD69",
     // },
 
+    notice: [
+      {
+        path: "/en/",
+        title: "Welcome",
+        content:
+          "Welcome to the Interview Guide website. We have a golang learning group. Follow the public account - 《几颗酥》. Give this project a star and contact the administrator to join for free.",
+        actions: [
+          {
+            text: "Join us!",
+            link: "https://goguide.ryansu.tech/assets/other/goguide-weixin-qr.png",
+            type: "primary",
+          },
+        ],
+      },
+      {
+        path: "/",
+        title: "欢迎",
+        content:
+          "欢迎访问面试宝典网站，我们有 golang 学习群，关注公众号 - 《几颗酥》， 给本项目点个 Star 联系管理员即可免费加入",
+        actions: [
+          {
+            text: "立即加入",
+            link: "https://goguide.ryansu.tech/assets/other/goguide-weixin-qr.png",
+            type: "primary",
+          },
+        ],
+      },
+    ],
+
     components: {
       components: ["Badge", "VPCard"],
     },
