@@ -29,6 +29,8 @@ head:
 
 :::
 
+## Map 相关
+
 ### Map 使用 range 遍历时是有序还是无序的？
 
 ::: details 答案
@@ -68,4 +70,16 @@ Map 在内部使用哈希算法放置元素，在自动扩容时又会重新计�
 
 ::: tip 会员专属
 [代码实战解析](https://articles.zsxq.com/id_4w1a11i6xrw0.html)
+:::
+
+### Map 产生的 panic 异常能被 recover 吗？
+
+::: details 答案
+Map 由于并发读写导致的 panic 是不能被 recover 的，因为 Map 的异常使用 `runtime.throw()` 抛出，这类异常不能被 recover。
+
+```go
+if h.flags&hashWriting != 0 {
+  throw("concurrent map read and map write")
+}
+```
 :::

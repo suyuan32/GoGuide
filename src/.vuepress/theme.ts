@@ -15,7 +15,7 @@ export default hopeTheme({
 
   logo: "/logo.svg",
 
-  repo: "github.com/suyuan32/GoGuide",
+  repo: "suyuan32/GoGuide",
 
   docsDir: "src",
 

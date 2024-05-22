@@ -28,6 +28,7 @@ head:
 
 :::
 
+## Map
 
 ### Is the traversal of a Map using range ordered or unordered?
 
@@ -68,4 +69,16 @@ If the value of the map is
 
 ::: tip Exclusive for members
 [Code combat analysis](https://articles.zsxq.com/id_4w1a11i6xrw0.html)
+:::
+
+### Can a panic caused by a map be recovered?
+
+::: details Answer
+A panic caused by concurrent read and write operations on a map cannot be recovered. This is because map-related panics are thrown using `runtime.throw()`, which cannot be recovered.
+
+```go
+if h.flags&hashWriting != 0 {
+  throw("concurrent map read and map write")
+}
+```
 :::
