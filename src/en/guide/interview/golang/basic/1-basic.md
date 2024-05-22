@@ -220,6 +220,72 @@ s := []string{"red", "black"}
 ```
 :::
 
+## Map
+
+### Can an uninitialized Map read a key?
+
+::: details Answer
+
+Yes, an uninitialized `map` that hasn't undergone `make` initialization will return the zero value of the current type for any `key` read.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var m map[int]int
+
+	fmt.Println(m[1])
+}
+
+// Output:
+// 0
+```
+:::
+
+### What happens if you assign a value to an uninitialized Map?
+
+::: details Answer
+
+It will trigger a `panic` exception error.
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	m[1] = 1
+}
+
+// Output:
+// panic: assignment to entry in nil map
+```
+
+:::
+
+### What happens if you delete a key from an uninitialized Map?
+
+::: details Answer
+
+In earlier versions, performing a `delete` operation on an uninitialized `map` would throw a `panic` error. In current versions, performing a `delete` operation on an uninitialized `map` will not cause an error.
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	delete(m, 1)
+}
+
+// Output:
+// 
+```
+
+:::
+
 
 ## Others
 ### What is the difference between `rune` and `byte` in Go?
@@ -491,69 +557,36 @@ The advantage of using pointer transfer is that it directly transfers the addres
 
 :::
 
+### Golang Common String Concatenation Methods and Their Efficiency
 
-## Map
+::: details
 
-### Can an uninitialized Map read a key?
+| Method            | Description                                                                                                                       |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `+`               | Using the `+` operator for concatenation involves iterating over the strings, calculating, and allocating new space.              |
+| `fmt.Sprintf`     | Since `printf` allows format specifiers like `%d`, `sprintf` uses reflection to convert different types, which is less efficient. |
+| `strings.Builder` | Concatenation using `WriteString()` internally uses `[]byte` slices and `unsafe.pointer` pointers.                                |
+| `bytes.Buffer`    | A byte buffer, underlyingly based on `[]byte` slices.                                                                             |
+| `strings.Join`    | `strings.Join` is implemented based on `strings.Builder`, preallocating memory space with `b.Grow(n)`, making it more efficient.  |
 
-::: details Answer
+> [!important]
+> What's the difference between `strings.Builder` and `bytes.Buffer`?
+> 1. `strings.Builder` preallocates space, reducing reallocations and improving efficiency, suitable for longer string concatenations.
+> 2. `bytes.Buffer` is mainly used for handling individual bytes, offering operations like deletion and replacement that `strings.Builder` lacks.
 
-Yes, an uninitialized `map` that hasn't undergone `make` initialization will return the zero value of the current type for any `key` read.
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-	var m map[int]int
-
-	fmt.Println(m[1])
-}
-
-// Output:
-// 0
-```
-:::
-
-### What happens if you assign a value to an uninitialized Map?
-
-::: details Answer
-
-It will trigger a `panic` exception error.
-
-```go
-package main
-
-func main() {
-	var m map[int]int
-
-	m[1] = 1
-}
-
-// Output:
-// panic: assignment to entry in nil map
-```
+> [!tip]
+> Efficiency ranking:
+> `strings.Join` ≈ `strings.Builder` > `bytes.Buffer` > `+` > `fmt.Sprintf`
 
 :::
 
-### What happens if you delete a key from an uninitialized Map?
+### What Are Tags Used for in Golang?
 
-::: details Answer
+::: details
 
-In earlier versions, performing a `delete` operation on an uninitialized `map` would throw a `panic` error. In current versions, performing a `delete` operation on an uninitialized `map` will not cause an error.
+In Go, struct fields can have various custom tags. When parsing a struct, these tags can be extracted for convenient operations. Common tags include:
 
-```go
-package main
-
-func main() {
-	var m map[int]int
-
-	delete(m, 1)
-}
-
-// Output:
-// 
-```
-
-:::
+- `json`: Used to declare JSON serialization and deserialization operations, specifying fields and options.
+- `db`: Primarily used for database field configuration, often in libraries like sqlx.
+- `form`: Commonly used in web frameworks to declare form field bindings.
+- `validate`: Frequently used for field validation rules by validators.

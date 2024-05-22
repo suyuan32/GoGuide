@@ -275,6 +275,72 @@ s := []string{"red", "black"}
 ```
 :::
 
+## Map
+
+### 未初始化的 Map 可以读取 key 吗？
+
+::: details 答案
+
+可以的，未执行 `make` 初始化的 `map` 读取任何 `key` 都会返回当前类型的空值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var m map[int]int
+
+	fmt.Println(m[1])
+}
+
+// 结果：
+// 0
+```
+:::
+
+### 如果对未初始化的 Map 赋值会怎么样？
+
+::: details 答案
+
+会触发 `panic` 异常错误
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	m[1] = 1
+}
+
+// 结果：
+// panic: assignment to entry in nil map
+```
+
+:::
+
+### 如果对未初始化的 Map 进行删除 key 的操作会发生什么？
+
+::: details 答案
+
+早期如果对未初始化的 `map` 进行 `delete` 操作会报 `panic` 错误， 现在的版本对于未初始化的 `map` 进行 `delete` 是不会报错的。
+
+```go
+package main
+
+func main() {
+	var m map[int]int
+
+	delete(m, 1)
+}
+
+// 结果：
+// 
+```
+
+:::
+
 
 ## 其他
 ###   Go 中的 `rune` 和 `byte` 有什么区别？
@@ -549,68 +615,38 @@ func main() {
 
 :::
 
-## Map
+### Golang 常见的字符串拼接方式有哪些？效率有何不同？
 
-### 未初始化的 Map 可以读取 key 吗？
+::: details
 
-::: details 答案
+| 方法              | 描述                                                                                                                   |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `+`               | 使用 `+` 操作符进行拼接会对遍历字符串，计算并开辟一个新的空间来存储合并后的字符串                                      |
+| `fmt.Sprintf`     | 由于 `printf` 中可以使用 `%d` 等表示变量类型， `sprintf` 需要使用到反射来将不同的类型进行转换，效率较低                |
+| `strings.Builder` | 使用 `WriteString()` 进行拼接操作，内部使用 `[]byte` 切片和 `unsafe.pointer` 指针实现                                  |
+| `bytes.Buffer`    | `byte` 缓冲器，底层是 `[]byte` 切片                                                                                    |
+| `strings.Join`    | `strings.Join` 是基于 `strings.Builder` 来实现的，在 `Join` 方法内调用了 `b.Grow(n)` 方法， 预分配了内存空间，较为高效 |
 
-可以的，未执行 `make` 初始化的 `map` 读取任何 `key` 都会返回当前类型的空值
+> [!important]
+> `strings.Builder` 和 `bytes.Buffer` 有什么区别？
+> 1. `strings.Builder` 会预分配空间，减少扩容，效率更高，适合较长的字符串拼接操作
+> 2. `bytes.Buffer` 主要用于处理单个字符，拥有许多针对单个 `byte` 的操作，如删除替换等，这个是 `strings.Builder` 没有的。
 
-```go
-package main
-
-import "fmt"
-
-func main() {
-	var m map[int]int
-
-	fmt.Println(m[1])
-}
-
-// 结果：
-// 0
-```
-:::
-
-### 如果对未初始化的 Map 赋值会怎么样？
-
-::: details 答案
-
-会触发 `panic` 异常错误
-
-```go
-package main
-
-func main() {
-	var m map[int]int
-
-	m[1] = 1
-}
-
-// 结果：
-// panic: assignment to entry in nil map
-```
+> [!tip]
+> 效率排行
+> strings.Join ≈ strings.Builder > bytes.Buffer > "+" > fmt.Sprintf
 
 :::
 
-### 如果对未初始化的 Map 进行删除 key 的操作会发生什么？
+### Golang 中的 Tag 有什么用？
 
-::: details 答案
+::: details
 
-早期如果对未初始化的 `map` 进行 `delete` 操作会报 `panic` 错误， 现在的版本对于未初始化的 `map` 进行 `delete` 是不会报错的。
+Golang 的结构体字段可以添加各类自定义的 `Tag`, 在解析结构体时可以使用函数将 `Tag` 解析出来，方便进行操作，常见的 `Tag`:
 
-```go
-package main
-
-func main() {
-	var m map[int]int
-
-	delete(m, 1)
-}
-
-// 结果：
-// 
-```
+- json: json tag 主要用于声明 json 在序列化和反序列化时的操作，如字段，可选等功能
+- db: 主要用于声明数据库字段配置，用在 sqlx 中
+- form: 常用在 web 框架中用于声明接收表单字段
+- validate: 常用于校验器对于字段校验的配置
 
 :::
