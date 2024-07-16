@@ -559,7 +559,7 @@ The advantage of using pointer transfer is that it directly transfers the addres
 
 ### Golang Common String Concatenation Methods and Their Efficiency
 
-::: details
+::: details Answer
 
 | Method            | Description                                                                                                                       |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -582,7 +582,7 @@ The advantage of using pointer transfer is that it directly transfers the addres
 
 ### What Are Tags Used for in Golang?
 
-::: details
+::: details Answer
 
 In Go, struct fields can have various custom tags. When parsing a struct, these tags can be extracted for convenient operations. Common tags include:
 
@@ -590,3 +590,5 @@ In Go, struct fields can have various custom tags. When parsing a struct, these 
 - `db`: Primarily used for database field configuration, often in libraries like sqlx.
 - `form`: Commonly used in web frameworks to declare form field bindings.
 - `validate`: Frequently used for field validation rules by validators.
+
+:::
