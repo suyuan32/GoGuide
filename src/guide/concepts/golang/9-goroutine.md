@@ -61,7 +61,7 @@ func main() {
 
 ### Goroutine 和 Channel
 
-我们知道，无论是在线程还是协程，在运行的时候都会遇到贡献数据或传递数据的情况，在 Golang 中，我们可以通过 Channel 来实现 Goroutine 之间的通信。
+我们知道，无论是在线程还是协程，在运行的时候都会遇到共享数据或传递数据的情况，在 Golang 中，我们可以通过 Channel 来实现 Goroutine 之间的通信。
 
 ```go
 package main
